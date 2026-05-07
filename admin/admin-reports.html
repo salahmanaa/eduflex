@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Rapports</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+</head>
+<body>
+    <!-- Sidebar (Same as admin-dashboard.html) -->
+     <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Administration</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-users.html">
+                        <i class="fas fa-users"></i> Utilisateurs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-instructors.html">
+                        <i class="fas fa-chalkboard-teacher"></i> Formateurs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-analytics.html">
+                        <i class="fas fa-chart-line"></i> Analytiques
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-reports.html">
+                        <i class="fas fa-file-alt"></i> Rapports
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communication</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-forum.html">
+                        <i class="fas fa-comments"></i> Forum
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Système</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-profile.html">
+                        <i class="fas fa-user-cog"></i> Mon Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Rapports du Système</h2>
+            <div class="d-flex align-items-center">
+                <!-- Same navbar content as admin-dashboard.html -->
+            </div>
+        </div>
+
+        <!-- Report Generation Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title mb-4">Générer un Rapport</h5>
+                <form class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Type de Rapport</label>
+                        <select class="form-select">
+                            <option selected>Sélectionner un type...</option>
+                            <option>Activité des Utilisateurs</option>
+                            <option>Performance des Formateurs</option>
+                            <option>Engagement des Étudiants</option>
+                            <option>Inscriptions aux Cours</option>
+                            <option>Résultats des Quiz</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Période</label>
+                        <select class="form-select">
+                            <option value="day">Jour</option>
+                            <option value="week">Semaine</option>
+                            <option value="month">Mois</option>
+                            <option value="year">Année</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Format</label>
+                        <select class="form-select">
+                            <option>PDF</option>
+                            <option>Excel</option>
+                            <option>CSV</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 align-self-end">
+                        <button type="submit" class="btn btn-primary w-100">Générer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Recent Reports -->
+        <div class="card mb-4">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0">Rapports Récents</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nom du Rapport</th>
+                                <th>Type</th>
+                                <th>Généré le</th>
+                                <th>Généré par</th>
+                                <th>Format</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Rapport_Activite_Mars2024</td>
+                                <td>Activité des Utilisateurs</td>
+                                <td>15/03/2024</td>
+                                <td>Alexandre Martin</td>
+                                <td><span class="badge bg-danger">PDF</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary me-1" title="Télécharger">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info me-1" title="Aperçu">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Performance_Formateurs_Q1</td>
+                                <td>Performance des Formateurs</td>
+                                <td>01/03/2024</td>
+                                <td>Alexandre Martin</td>
+                                <td><span class="badge bg-success">Excel</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary me-1" title="Télécharger">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info me-1" title="Aperçu">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Engagement_Etudiants_Fevrier</td>
+                                <td>Engagement des Étudiants</td>
+                                <td>28/02/2024</td>
+                                <td>Alexandre Martin</td>
+                                <td><span class="badge bg-primary">CSV</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary me-1" title="Télécharger">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-info me-1" title="Aperçu">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scheduled Reports -->
+        <div class="card">
+            <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Rapports Programmés</h5>
+                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#scheduleReportModal">
+                    <i class="fas fa-plus"></i> Programmer un rapport
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Type</th>
+                                <th>Fréquence</th>
+                                <th>Prochain envoi</th>
+                                <th>Destinataires</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Rapport Hebdomadaire d'Activité</td>
+                                <td>Activité des Utilisateurs</td>
+                                <td>Hebdomadaire</td>
+                                <td>22/03/2024</td>
+                                <td>3 destinataires</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary me-1" title="Éditer">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Report Modal -->
+    <div class="modal fade" id="scheduleReportModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Programmer un Rapport</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Nom du Rapport</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Type de Rapport</label>
+                            <select class="form-select" required>
+                                <option value="">Sélectionner...</option>
+                                <option>Activité des Utilisateurs</option>
+                                <option>Performance des Formateurs</option>
+                                <option>Engagement des Étudiants</option>
+                                <option>Inscriptions aux Cours</option>
+                                <option>Résultats des Quiz</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fréquence</label>
+                            <select class="form-select" required>
+                                <option>Quotidien</option>
+                                <option>Hebdomadaire</option>
+                                <option>Mensuel</option>
+                                <option>Trimestriel</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Format</label>
+                            <select class="form-select" required>
+                                <option>PDF</option>
+                                <option>Excel</option>
+                                <option>CSV</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Destinataires (emails)</label>
+                            <textarea class="form-control" rows="3" placeholder="Un email par ligne"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary">Programmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fetch and display recent reports
+        async function loadReports() {
+            const res = await fetch('/api/admin/reports');
+            const reports = await res.json();
+            const tbody = document.querySelector('table.table-hover tbody');
+            tbody.innerHTML = reports.length ? reports.map(r => `
+                <tr>
+                    <td>${r.name}</td>
+                    <td>${r.type}</td>
+                    <td>${new Date(r.generatedAt).toLocaleDateString()}</td>
+                    <td>${r.generatedBy}</td>
+                    <td><span class="badge bg-${r.format === 'PDF' ? 'danger' : r.format === 'Excel' ? 'success' : 'primary'}">${r.format}</span></td>
+                    <td>
+                        <a href="${r.fileUrl || '#'}" class="btn btn-sm btn-primary me-1" title="Télécharger" download>
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <button class="btn btn-sm btn-info me-1" title="Aperçu" data-preview="${r._id}">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" title="Supprimer" data-delete="${r._id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('') : '<tr><td colspan="6" class="text-center">Aucun rapport</td></tr>';
+        }
+
+        // Fetch and display scheduled reports
+        async function loadScheduledReports() {
+            const res = await fetch('/api/admin/scheduled-reports');
+            const scheduled = await res.json();
+            const tbody = document.querySelectorAll('table.table')[1].querySelector('tbody');
+            tbody.innerHTML = scheduled.length ? scheduled.map(s => `
+                <tr>
+                    <td>${s.name}</td>
+                    <td>${s.type}</td>
+                    <td>${s.frequency}</td>
+                    <td>${new Date(s.nextRun).toLocaleDateString()}</td>
+                    <td>${s.recipients.length} destinataires</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" title="Supprimer" data-delete-sched="${s._id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('') : '<tr><td colspan="6" class="text-center">Aucun rapport programmé</td></tr>';
+        }
+
+        // Handle report generation form
+        document.querySelector('.card-body form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const name = 'Rapport_' + Date.now();
+            const type = form.querySelector('select').value;
+            const period = form.querySelectorAll('select')[1].value;
+            const format = form.querySelectorAll('select')[2].value;
+            // For demo, just use type and format
+            await fetch('/api/admin/reports', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, type, format, period })
+            });
+            await loadReports();
+        });
+
+        // Handle delete report and preview
+        document.querySelector('table.table-hover').addEventListener('click', async function(e) {
+            if (e.target.closest('[data-delete]')) {
+                const id = e.target.closest('[data-delete]').getAttribute('data-delete');
+                await fetch('/api/admin/reports/' + id, { method: 'DELETE' });
+                await loadReports();
+            }
+            if (e.target.closest('[data-preview]')) {
+                const row = e.target.closest('tr');
+                const name = row.children[0].textContent;
+                const format = row.children[4].textContent.trim();
+                const downloadLink = row.querySelector('a[download]')?.getAttribute('href');
+                showPreviewModal(name, format, downloadLink);
+            }
+        });
+
+        // Handle delete scheduled report
+        document.querySelectorAll('table.table')[1].addEventListener('click', async function(e) {
+            if (e.target.closest('[data-delete-sched]')) {
+                const id = e.target.closest('[data-delete-sched]').getAttribute('data-delete-sched');
+                await fetch('/api/admin/scheduled-reports/' + id, { method: 'DELETE' });
+                await loadScheduledReports();
+            }
+        });
+
+        // Handle schedule report modal
+        document.querySelector('#scheduleReportModal .btn-primary').addEventListener('click', async function() {
+            const modal = document.getElementById('scheduleReportModal');
+            const name = modal.querySelector('input[type="text"]').value;
+            const type = modal.querySelectorAll('select')[0].value;
+            const frequency = modal.querySelectorAll('select')[1].value;
+            const format = modal.querySelectorAll('select')[2].value;
+            const recipients = modal.querySelector('textarea').value.split(/\n|,/).map(s => s.trim()).filter(Boolean);
+            // Next run: tomorrow for demo
+            const nextRun = new Date(Date.now() + 24*60*60*1000);
+            await fetch('/api/admin/scheduled-reports', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, type, frequency, nextRun, recipients, format })
+            });
+            await loadScheduledReports();
+            // Hide modal
+            bootstrap.Modal.getInstance(modal).hide();
+        });
+
+        // Preview modal logic
+        function showPreviewModal(name, format, fileUrl) {
+            let modal = document.getElementById('previewReportModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.className = 'modal fade';
+                modal.id = 'previewReportModal';
+                modal.tabIndex = -1;
+                document.body.appendChild(modal);
+            }
+            let bodyContent = '';
+            if (format === 'PDF' && fileUrl) {
+                bodyContent = `<iframe src="${fileUrl}" style="width:100%;height:500px;" frameborder="0"></iframe>`;
+            } else {
+                bodyContent = `<p>Prévisualisation non disponible pour ce format.<br>Téléchargez le fichier pour le consulter.</p>`;
+            }
+            modal.innerHTML = `
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Aperçu du Rapport</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><b>${name}</b></p>
+                        ${bodyContent}
+                    </div>
+                </div>
+            </div>`;
+            new bootstrap.Modal(modal).show();
+        }
+
+        // Initial load
+        loadReports();
+        loadScheduledReports();
+
+        document.querySelectorAll('a').forEach(function(link) {
+            if (link.textContent.includes('Déconnexion')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
+                        .then(() => window.location.href = 'index.html');
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,431 @@
+:root {
+    --primary: #5461FF;
+    --primary-light: #EEF0FF;
+    --secondary: #5D7DFF;
+    --dark: #232245;
+    --success: #36B37E;
+    --warning: #FFAB00;
+    --danger: #FF5630;
+    --bg-light: #F9FAFB;
+    --border-color: #E5E7EB;
+}
+/* Ajouter ces styles */
+.badge-course { background-color: #4a90e2; color: white; }
+.badge-ai { background-color: #50e3c2; color: #1a1a1a; }
+.badge-danger { background-color: #ff4757; color: white; }
+
+#createDiscussionModal .form-control {
+  border-radius: 8px;
+  padding: 12px;
+}
+
+#createDiscussionModal .modal-content {
+  border-radius: 12px;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--dark);
+}
+/* Styles améliorés */
+.discussion-card {
+    border-radius: 12px;
+    transition: transform 0.2s;
+    border: none;
+}
+
+.discussion-card:hover {
+    transform: translateY(-3px);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.discussion-meta {
+    font-size: 0.9rem;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+}
+
+.badge-course { background-color: #3498db; }
+.badge-ai { background-color: #2ecc71; }
+.badge-danger { background-color: #e74c3c; }
+
+#createDiscussionModal .form-control {
+    border: 2px solid #ecf0f1;
+    transition: border-color 0.3s;
+}
+
+#createDiscussionModal .form-control:focus {
+    border-color: #3498db;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    border: none;
+    padding: 0.5rem 1.5rem;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/* Style des discussions */
+.list-group-item {
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    border-left-color: #3498db;
+    background-color: #f8f9fa;
+}
+
+.badge {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+#createDiscussionBtn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+}
+.interaction-buttons .btn {
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+}
+.text-gradient {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar {
+    background-color: white;
+    border-right: 1px solid var(--border-color);
+    height: 100vh;
+    position: fixed;
+    width: 250px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.sidebar .nav-link {
+    color: #6B7280;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 0.25rem;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.sidebar .nav-link.active {
+    font-weight: 500;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 2rem;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-stat {
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.card-stat i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.bg-primary-light {
+    background-color: var(--primary-light);
+}
+
+.progress {
+    height: 8px;
+    border-radius: 4px;
+}
+
+.course-card .progress {
+    height: 6px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-lg {
+    width: 60px;
+    height: 60px;
+}
+
+.badge-course {
+    background-color: #E6FFFA;
+    color: #0BA37F;
+}
+
+.badge-ai {
+    background-color: #EFF6FF;
+    color: #1E40AF;
+}
+
+.badge-live {
+    background-color: #FEF2F2;
+    color: #DC2626;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: #E5E7EB;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-item:before {
+    content: "";
+    position: absolute;
+    left: -30px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid var(--primary);
+}
+
+.schedule-card {
+    border-left: 4px solid var(--primary);
+}
+
+.navbar-profile .dropdown-toggle::after {
+    display: none;
+}
+
+.navbar-profile .dropdown-menu {
+    min-width: 15rem;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    padding: 4px;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    min-width: 18px;
+    text-align: center;
+}
+
+
+
+.dropdown-menu .dropdown-item i {
+    margin-right: 10px;
+    width: 18px;
+    text-align: center;
+}
+
+.course-item {
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+
+.course-item:hover {
+    background-color: #f8faff;
+    transform: translateY(-2px);
+}
+
+.quiz-option:hover {
+    border-color: var(--primary) !important;
+    background-color: var(--primary-light);
+}
+
+.quiz-option.selected {
+    border-color: var(--primary) !important;
+    background-color: var(--primary-light);
+}
+
+.search-input {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    padding-left: 40px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6B7280;
+}
+
+/* SweetAlert Customization */
+.swal2-popup {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
+}
+
+.swal2-title {
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.swal2-actions {
+  margin: 1.5em auto 0;
+}
+
+.swal2-confirm, .swal2-cancel {
+  padding: 0.5em 1.5em;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.swal2-confirm {
+  background-color: #dc3545 !important;
+}
+
+.swal2-cancel {
+  background-color: #6c757d !important;
+}
+
+/* Quiz Card Styles */
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem 0 rgba(58, 59, 69, 0.2);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    color: #5a5c69;
+}
+
+/* Progress Bar */
+.progress {
+    border-radius: 0.35rem;
+    height: 0.5rem;
+}
+
+.progress-bar {
+    border-radius: 0.35rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* Empty State Styles */
+#emptyState img {
+    opacity: 0.7;
+}
+
+/* Modal Styles */
+.modal-content {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e3e6f0;
+}
+
+.modal-footer {
+    border-top: 1px solid #e3e6f0;
+}
+
+/* Form Styles */
+.form-control, .form-select {
+    border: 1px solid #d1d3e2;
+    border-radius: 0.35rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #bac8f3;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #4e73df;
+    border-color: #4e73df;
+}
+
+.btn-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2653d4;
+}
+
+.btn-light {
+    background-color: #f8f9fc;
+    border-color: #f8f9fc;
+}
+
+.btn-light:hover {
+    background-color: #e2e6ea;
+    border-color: #dde1e6;
+}

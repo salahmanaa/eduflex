@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Mes Étudiants</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Sidebar (Same as in prof-dashboard.html) -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="prof-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-cours.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-etudiants.html">
+                        <i class="fas fa-user-graduate"></i> Mes étudiants
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="devoirs.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prof-quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="statistiques.html">
+                        <i class="fas fa-chart-bar"></i> Statistiques
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communauté</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-users"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="fas fa-comments"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="conference.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profileteacher.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Mes Étudiants</h2>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary me-2">
+                    <i class="fas fa-download me-2"></i>Exporter la liste
+                </button>
+                <div class="position-relative me-3">
+                    <button class="btn btn-light position-relative" type="button">
+                        <i class="far fa-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </button>
+                </div>
+                <!-- Profile Dropdown (Same as in prof-dashboard.html) -->
+            </div>
+        </div>
+
+        <!-- Student Filters -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="Rechercher un étudiant...">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option value="">Tous les cours</option>
+                            <option>Introduction à l'IA</option>
+                            <option>Développement Web</option>
+                            <option>Data Science</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option value="">Statut</option>
+                            <option>Actif</option>
+                            <option>Inactif</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option value="">Trier par</option>
+                            <option>Nom</option>
+                            <option>Performance</option>
+                            <option>Activité</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Students Table -->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Étudiant</th>
+                                <th>Cours inscrits</th>
+                                <th>Performance</th>
+                                <th>Dernière activité</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--  Student Row appear here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <nav class="d-flex justify-content-between align-items-center mt-4">
+                    <p class="text-muted mb-0">Affichage de 1-10 sur 45 étudiants</p>
+                    <ul class="pagination mb-0">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#"><i class="fas fa-chevron-left small"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="fas fa-chevron-right small"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/logout.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        // Fetch teacher's students
+        const response = await fetch('/api/teachers/students', {
+            credentials: 'include'
+        });
+        
+        if (!response.ok) {
+            throw new Error('Erreur lors du chargement des étudiants');
+        }
+        
+        const data = await response.json();
+        
+        if (data.success && data.students.length > 0) {
+            renderStudents(data.students);
+        } else {
+            document.querySelector('tbody').innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center py-4">
+                        <i class="fas fa-user-graduate fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">Aucun étudiant inscrit à vos cours</p>
+                    </td>
+                </tr>
+            `;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: error.message
+        });
+    }
+    
+    // Export button functionality
+    document.querySelector('.btn-primary.me-2').addEventListener('click', async function() {
+        try {
+            const response = await fetch('/api/teachers/students/export', {
+                credentials: 'include'
+            });
+            
+            if (!response.ok) {
+                throw new Error('Erreur lors de l\'export');
+            }
+            
+            // Trigger download
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'etudiants.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Export réussi',
+                text: 'La liste des étudiants a été téléchargée'
+            });
+        } catch (error) {
+            console.error('Export error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Erreur',
+                text: error.message
+            });
+        }
+    });
+});
+
+function renderStudents(students) {
+    const tbody = document.querySelector('tbody');
+    tbody.innerHTML = '';
+    
+    students.forEach(student => {
+        const row = document.createElement('tr');
+        
+        // Generate course badges
+        const courseBadges = student.courses.map(course => {
+            const badgeClass = course.includes('IA') ? 'badge-ai' : 
+                              course.includes('Data') ? 'badge-data' : 'badge-course';
+            return `<span class="badge ${badgeClass}">${course.split(' ')[0]}</span>`;
+        }).join('');
+        
+        // Determine status icon and text
+        const lastActivityDate = new Date(student.lastActivity);
+        const now = new Date();
+        const hoursDiff = Math.abs(now - lastActivityDate) / 36e5;
+        
+        let activityIcon, activityText;
+        if (hoursDiff < 1) {
+            activityIcon = 'text-success';
+            activityText = 'En ligne';
+        } else if (hoursDiff < 24) {
+            activityIcon = 'text-success';
+            activityText = `Il y a ${Math.floor(hoursDiff)}h`;
+        } else {
+            activityIcon = 'text-warning';
+            activityText = `Il y a ${Math.floor(hoursDiff/24)}j`;
+        }
+        
+        row.innerHTML = `
+            <td>
+                <div class="d-flex align-items-center">
+                    <img src="${student.profilePhoto}" class="rounded-circle me-2" width="40" height="40" alt="Student">
+                    <div>
+                        <p class="fw-medium mb-0">${student.name}</p>
+                        <p class="text-muted small mb-0">${student.email}</p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex gap-1">
+                    ${courseBadges}
+                </div>
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <div class="progress flex-grow-1 me-2" style="height: 6px;">
+                        <div class="progress-bar ${student.performance > 80 ? 'bg-success' : student.performance > 60 ? 'bg-warning' : 'bg-danger'}" 
+                             style="width: ${student.performance}%"></div>
+                    </div>
+                    <span>${student.performance}%</span>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-circle ${activityIcon} me-2 small"></i>
+                    <span>${activityText}</span>
+                </div>
+            </td>
+            <td>
+                <span class="badge bg-success">${student.status}</span>
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-light btn-sm" data-bs-toggle="dropdown">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Voir profil</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line me-2"></i>Performance</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-envelope me-2"></i>Contacter</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-ban me-2"></i>Bloquer</a></li>
+                    </ul>
+                </div>
+            </td>
+        `;
+        
+        tbody.appendChild(row);
+    });
+}
+</script>
+</body>
+</html> 

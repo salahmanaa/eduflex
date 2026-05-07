@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Administrateur - EduFlex</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Administration</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-users.html">
+                        <i class="fas fa-users"></i> Utilisateurs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-instructors.html">
+                        <i class="fas fa-chalkboard-teacher"></i> Formateurs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-analytics.html">
+                        <i class="fas fa-chart-line"></i> Analytiques
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-reports.html">
+                        <i class="fas fa-file-alt"></i> Rapports
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communication</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-forum.html">
+                        <i class="fas fa-comments"></i> Forum
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Système</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-profile.html">
+                        <i class="fas fa-user-cog"></i> Mon Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="me-4">
+                                    <img id="profilePhoto" src="../assets/images/default-profile.png" class="rounded-circle" width="100" height="100" alt="Photo de profil">
+                                    <form id="photoForm" class="mt-2">
+                                        <input type="file" name="profilePhoto" accept="image/*" class="form-control form-control-sm">
+                                        <button type="submit" class="btn btn-outline-primary btn-sm mt-2">Changer la photo</button>
+                                    </form>
+                                </div>
+                                <div>
+                                    <h3 id="adminName" class="mb-1">Nom Admin</h3>
+                                    <p class="text-muted mb-0" id="adminEmail">admin@email.com</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <form id="profileForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Prénom</label>
+                                        <input type="text" name="firstName" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nom</label>
+                                        <input type="text" name="lastName" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                            </form>
+                            <hr>
+                            <form id="passwordForm">
+                                <h5 class="mb-3">Changer le mot de passe</h5>
+                                <div class="mb-3">
+                                    <label class="form-label">Nouveau mot de passe</label>
+                                    <input type="password" name="newPassword" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Confirmer le mot de passe</label>
+                                    <input type="password" name="confirmPassword" class="form-control" required>
+                                </div>
+                                <button type="submit" class="btn btn-warning">Changer le mot de passe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fetch admin profile
+        async function fetchProfile() {
+            const res = await fetch('/api/auth/me');
+            if (!res.ok) return alert('Erreur chargement profil');
+            const user = await res.json();
+            document.getElementById('adminName').textContent = user.firstName + ' ' + user.lastName;
+            document.getElementById('adminEmail').textContent = user.email;
+            document.getElementById('profilePhoto').src = (user.profilePhoto || '../assets/images/default-profile.png') + '?' + new Date().getTime();
+            // Fill form
+            const form = document.getElementById('profileForm');
+            form.elements.firstName.value = user.firstName;
+            form.elements.lastName.value = user.lastName;
+            form.elements.email.value = user.email;
+        }
+        fetchProfile();
+
+        // Update profile info
+        document.getElementById('profileForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            const res = await fetch('/api/auth/me', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (!res.ok) return alert('Erreur lors de la mise à jour');
+            alert('Profil mis à jour !');
+            fetchProfile();
+        });
+
+        // Change password
+        document.getElementById('passwordForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const { newPassword, confirmPassword } = Object.fromEntries(formData.entries());
+            if (newPassword !== confirmPassword) return alert('Les mots de passe ne correspondent pas');
+            const res = await fetch('/api/auth/change-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ newPassword })
+            });
+            if (!res.ok) return alert('Erreur lors du changement de mot de passe');
+            alert('Mot de passe changé !');
+            e.target.reset();
+        });
+
+        // Change profile photo
+        document.getElementById('photoForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const res = await fetch('/api/auth/users/upload-photo', {
+                method: 'POST',
+                body: formData
+            });
+            if (!res.ok) return alert('Erreur lors du changement de photo');
+            alert('Photo de profil mise à jour !');
+            fetchProfile();
+        });
+
+        document.querySelectorAll('a').forEach(function(link) {
+            if (link.textContent.includes('Déconnexion')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
+                        .then(() => window.location.href = '../index.html');
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html> 

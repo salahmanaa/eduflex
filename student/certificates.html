@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Dashboard Étudiant</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/etud-style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="student-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="my-courses.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="assignments.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  active" href="certificates.html">
+                        <i class="fas fa-certificate"></i> Certificats
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communauté</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-users"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="fas fa-comments"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="conferences.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Tableau de bord</h2>
+            <div class="d-flex align-items-center">
+                <div class="position-relative me-3">
+                   
+                </div>
+                <div class="dropdown navbar-profile">
+                    
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user-circle"></i> Mon profil</a></li>
+                        <li><a class="dropdown-item" href="certificates.html"><i class="fas fa-certificate"></i> Mes certificats</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="../index.html"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid mt-4">
+            <h2 class="mb-4">Mes Certificats</h2>
+            
+            <div class="row g-4">
+                <!-- Certificat 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-certificate fa-4x text-primary mb-3"></i>
+                            <h5 class="fw-bold mb-2">Développement Web Frontend</h5>
+                            <p class="text-muted small mb-3">Délivré le 15 Mars 2025</p>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-outline-primary btn-sm view-certificate" data-id="123">
+                                    <i class="fas fa-eye me-2"></i>Voir le certificat
+                                </button>
+                                <button class="btn btn-outline-success btn-sm download-certificate" data-id="123">
+                                    <i class="fas fa-download me-2"></i>Télécharger PDF
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de visualisation -->
+    <div class="modal fade" id="certificateModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Certificat de Réussite</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <iframe id="certificateFrame" style="width: 100%; height: 80vh; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/etud-script.js"></script>
+    <script src="../assets/js/logout.js"></script>
+    <script>
+        document.querySelectorAll('.view-certificate').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const certId = btn.dataset.id;
+                const frame = document.getElementById('certificateFrame');
+                frame.src = `../assets/images/certificat.png`;
+                new bootstrap.Modal('#certificateModal').show();
+            });
+        });
+    </script>
+
+
+    
+    
+</body>        
+</html>

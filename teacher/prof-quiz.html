@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Quiz</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .quiz-card {
+            transition: transform 0.2s;
+        }
+        .quiz-card:hover {
+            transform: translateY(-2px);
+        }
+        .badge-draft { background-color: #6c757d; }
+        .badge-upcoming { background-color: #0d6efd; }
+        .badge-active { background-color: #198754; }
+        .badge-completed { background-color: #dc3545; }
+        .question-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+        }
+        .correct-answer {
+            color: #198754;
+            font-weight: bold;
+        }
+        .incorrect-answer {
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="C:\Users\salah\OneDrive\Bureau\eduflex-landing\index.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-cours.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-etudiants.html">
+                        <i class="fas fa-user-graduate"></i> Mes étudiants
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="devoirs.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="prof-quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="statistiques.html">
+                        <i class="fas fa-chart-bar"></i> Statistiques
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communauté</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-users"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="fas fa-comments"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="conference.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profileteacher.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Quiz</h2>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#newQuizModal">
+                    <i class="fas fa-plus me-2"></i>Créer un quiz
+                </button>
+                <div class="position-relative me-3">
+                    <button class="btn btn-light position-relative" type="button">
+                        <i class="far fa-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Filters -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="searchQuiz" placeholder="Rechercher un quiz...">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="filterCourse">
+                            <option value="">Tous les cours</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="filterStatus">
+                            <option value="">Tous les statuts</option>
+                            <option value="draft">Brouillon</option>
+                            <option value="upcoming">À venir</option>
+                            <option value="active">En cours</option>
+                            <option value="completed">Terminé</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select" id="sortBy">
+                            <option value="createdAt">Date de création</option>
+                            <option value="startDate">Date de début</option>
+                            <option value="title">Titre</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz List -->
+        <div class="row g-4" id="quizContainer">
+            <!-- Quizzes will be loaded here -->
+        </div>
+    </div>
+
+    <!-- New Quiz Modal -->
+    <div class="modal fade" id="newQuizModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Créer un nouveau quiz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newQuizForm">
+                        <div class="mb-3">
+                            <label class="form-label">Titre du quiz *</label>
+                            <input type="text" class="form-control" id="quizTitle" placeholder="Entrez le titre du quiz" required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Cours *</label>
+                                <select class="form-select" id="quizCourse" required>
+                                    <option value="">Sélectionnez un cours</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Durée (minutes) *</label>
+                                <input type="number" class="form-control" id="quizDuration" min="1" value="30" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" rows="4" id="quizDescription" placeholder="Décrivez le quiz"></textarea>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Date de début</label>
+                                <input type="datetime-local" class="form-control" id="quizStartDate">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Points totaux</label>
+                                <input type="number" class="form-control" id="quizPoints" min="0" step="1" value="0">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="shuffleQuestions">
+                                <label class="form-check-label" for="shuffleQuestions">
+                                    Mélanger les questions
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="showResults">
+                                <label class="form-check-label" for="showResults">
+                                    Montrer les résultats immédiatement
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="createQuizBtn">Créer le quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Management Modal -->
+    <div class="modal fade" id="quizManageModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="quizManageTitle">Gérer le quiz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Ajouter une question</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form id="addQuestionForm">
+                                        <div class="mb-3">
+                                            <label for="questionText" class="form-label">Texte de la question</label>
+                                            <textarea class="form-control" id="questionText" rows="2" required></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="questionType" class="form-label">Type de question</label>
+                                            <select class="form-select" id="questionType">
+                                                <option value="multiple_choice" selected>Choix Multiple</option>
+                                                <option value="true_false">Vrai/Faux</option>
+                                                <option value="open_ended">Ouverte</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Container for multiple choice options -->
+                                        <div id="mcOptionsContainer" class="mb-3">
+                                            <label class="form-label">Options de réponse</label>
+                                            <div id="options-wrapper">
+                                                    <!-- Initial options -->
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-text">
+                                                            <input class="form-check-input mt-0" type="radio" name="correctoption" value="0">
+                                                        </div>
+                                                        <input type="text" class="form-control" name="optiontext" placeholder="Option 1">
+                                                    </div>
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-text">
+                                                            <input class="form-check-input mt-0" type="radio" name="correctoption" value="1">
+                                                        </div>
+                                                        <input type="text" class="form-control" name="optiontext" placeholder="Option 2">
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-outline-secondary" id="addOptionBtn">+ Ajouter une option</button>
+                                            </div>
+
+                                        <div class="mb-3" id="correctAnswerGroup" style="display: none;">
+                                            <label for="correctAnswer" id="correctAnswerLabel" class="form-label">Réponse correcte</label>
+                                            <input type="text" class="form-control" id="correctAnswer">
+                                            <div class="form-text" id="correctAnswerHelp">
+                                                Pour Vrai/Faux, entrez 'Vrai' ou 'Faux'. Pour les questions ouvertes, entrez la réponse modèle attendue.
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="questionExplanation" class="form-label">Explication (optionnel)</label>
+                                            <textarea class="form-control" id="questionExplanation" rows="2"></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="questionPoints" class="form-label">Points</label>
+                                            <input type="number" class="form-control" id="questionPoints" value="1" min="1" required>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary w-100">
+                                            <i class="fas fa-plus me-2"></i>Ajouter la question
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="mb-0">Questions du quiz</h6>
+                                <div>
+                                    <button class="btn btn-success btn-sm" id="publishQuizBtn">
+                                        <i class="fas fa-play me-2"></i>Publier le quiz
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="questionsList">
+                                <!-- Questions will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Question Modal -->
+    <div class="modal fade" id="editQuestionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifier la question</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editQuestionForm">
+                        <input type="hidden" id="editQuestionId">
+                        <div class="mb-3">
+                            <label for="editQuestionText" class="form-label">Texte de la question</label>
+                            <textarea class="form-control" id="editQuestionText" rows="2" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editQuestionType" class="form-label">Type de question</label>
+                            <select class="form-select" id="editQuestionType">
+                                <option value="multiple_choice">Choix Multiple</option>
+                                <option value="true_false">Vrai/Faux</option>
+                                <option value="open_ended">Ouverte</option>
+                            </select>
+                        </div>
+
+                        <!-- Container for multiple choice options -->
+                        <div id="editMcOptionsContainer" class="mb-3">
+                            <label class="form-label">Options de réponse</label>
+                            <div id="edit-options-wrapper">
+                                <!-- Options will be populated by JS -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" id="editAddOptionBtn">+ Ajouter une option</button>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editCorrectAnswer" class="form-label">Réponse correcte</label>
+                            <input type="text" class="form-control" id="editCorrectAnswer" required>
+                            <div class="form-text">Pour Vrai/Faux, entrez 'Vrai' ou 'Faux'. Pour Choix Multiple, entrez le texte de l'option correcte.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="editQuestionExplanation" class="form-label">Explication (optionnel)</label>
+                            <textarea class="form-control" id="editQuestionExplanation" rows="2"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editQuestionPoints" class="form-label">Points</label>
+                            <input type="number" class="form-control" id="editQuestionPoints" value="1" min="1" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="updateQuestionBtn">Mettre à jour</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/logout.js"></script>
+
+    <script src="../assets/js/prof-quiz.js"></script>
+</body>
+</html>

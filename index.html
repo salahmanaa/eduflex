@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Plateforme e-learning intelligente</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+   
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="text-gradient">EduFlex</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Fonctionnalités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#modules">Modules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">Comment ça marche</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Cours populaires</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Témoignages</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">S'inscrire</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="container" >
+            <div class="row align-items-center" >
+                <div class="col-lg-6 mb-5 mb-lg-0" >
+                    <span class="badge rounded-pill bg-white text-primary fw-normal mb-3 px-3 py-2 shadow-sm">La plateforme e-learning #1 dopée à l'IA</span>
+                    <h1 class="display-4 fw-bold mb-4">Apprenez à votre rythme avec l'IA qui comprend vos besoins</h1>
+                    <p class="lead mb-5">EduFlex personnalise votre parcours d'apprentissage grâce à l'intelligence artificielle qui s'adapte à votre style et votre progression.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-primary btn-lg px-4 py-3 rounded-pill shadow-sm">Commencer gratuitement</button>
+                        <button class="btn btn-outline-dark btn-lg px-4 py-3 rounded-pill">Découvrir nos cours</button>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mt-5">
+                        <div class="d-flex">
+                            <img src="assets/images/u1.png" class="rounded-circle border border-white shadow-sm" alt="user" style="margin-left: -5px;">
+                            <img src="assets/images/u2.png" class="rounded-circle border border-white shadow-sm" alt="user" style="margin-left: -15px;">
+                            <img src="assets/images/u3.png" class="rounded-circle border border-white shadow-sm" alt="user" style="margin-left: -15px;">
+                        </div>
+                        <div class="ms-3">
+                            <p class="mb-0 fw-medium">Plus de <span class="text-primary fw-bold">10,000+</span> apprenants</p>
+                            <div class="d-flex align-items-center">
+                                <div class="text-warning me-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-muted small">4.8/5 (500+ avis)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 position-relative">
+                    
+                    
+                    <div class="hero-image">
+                        <img src="assets/images/EDULER.png" alt="Plateforme EduFlex en action"  class="img-fluid rounded-3 border border-4 border-white">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="text-center mb-4">
+                <p class="text-muted mb-0">Ils nous font confiance</p>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-6 col-md-2 text-center mb-3 mb-md-0">
+                    <img src="assets/images/spon 1.png" alt="Partner 1" class="img-fluid opacity-75">
+                </div>
+                <div class="col-6 col-md-2 text-center mb-3 mb-md-0">
+                    <img src="assets/images/spon 2.png" alt="Partner 2" class="img-fluid opacity-75">
+                </div>
+                <div class="col-6 col-md-2 text-center mb-3 mb-md-0">
+                    <img src="assets/images/spon 3.png" alt="Partner 3" class="img-fluid opacity-75">
+                </div>
+                <div class="col-6 col-md-2 text-center mb-3 mb-md-0">
+                    <img src="assets/images/spon 4.png" alt="Partner 4" class="img-fluid opacity-75">
+                </div>
+                <div class="col-6 col-md-2 text-center">
+                    <img src="assets/images/spon 5.png" alt="Partner 5" class="img-fluid opacity-75">
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Popular Courses Section -->
+     <section class="py-5 py-md-7 bg-light" id="courses">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-5">
+                <div>
+                    <span class="badge rounded-pill bg-primary-light text-primary px-3 py-2 mb-3">Catalogue de formation</span>
+                    <h2 class="display-5 fw-bold mb-3">Découvrez nos cours populaires</h2>
+                    <p class="lead text-muted" style="max-width: 600px;">Des formations de qualité créées par des experts reconnus dans leur domaine</p>
+                </div>
+                <a href="#" class="btn btn-outline-primary px-4 mt-3 mt-md-0">Voir tous les cours</a>
+            </div>
+
+            <div class="row g-4">
+                <!-- Course 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card shadow-sm h-100">
+                        <img src="assets/images/Artificial-Intelligence-Training-Courses.jpg" class="card-img-top course-image" alt="Course 1">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge badge-ai">Intelligence Artificielle</span>
+                                <span class="fw-bold text-primary">€49</span>
+                            </div>
+                            <h4 class="fw-bold mb-3">Introduction à l'IA et au Machine Learning</h4>
+                            <p class="text-muted mb-4">Maîtrisez les concepts fondamentaux de l'IA et du Machine Learning sans prérequis techniques.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="progress course-progress mb-1" style="width: 100px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="text-muted small">12 modules</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="text-warning me-1">
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star-half-alt small"></i>
+                                    </div>
+                                    <span class="text-muted small">(128)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card shadow-sm h-100">
+                        <img src="assets/images/web development.png" class="card-img-top course-image" alt="Course 2">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge badge-course">Développement Web</span>
+                                <span class="fw-bold text-primary">€39</span>
+                            </div>
+                            <h4 class="fw-bold mb-3">Développement Full-Stack avec React et Node.js</h4>
+                            <p class="text-muted mb-4">Créez des applications web modernes avec les technologies JavaScript les plus demandées.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="progress course-progress mb-1" style="width: 100px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="text-muted small">16 modules</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="text-warning me-1">
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                    </div>
+                                    <span class="text-muted small">(210)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card course-card shadow-sm h-100">
+                        <img src="assets/images/data-science-course.jpg" class="card-img-top course-image" alt="Course 3">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge badge-ai">Data Science</span>
+                                <span class="fw-bold text-primary">€59</span>
+                            </div>
+                            <h4 class="fw-bold mb-3">Data Science et Visualisation avec Python</h4>
+                            <p class="text-muted mb-4">Analysez et visualisez des données complexes avec les bibliothèques Python les plus puissantes.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="progress course-progress mb-1" style="width: 100px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <span class="text-muted small">14 modules</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="text-warning me-1">
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star small"></i>
+                                        <i class="fas fa-star-half-alt small"></i>
+                                    </div>
+                                    <span class="text-muted small">(156)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features Section -->
+    <section class="py-5 py-md-7 bg-white" id="features">
+        <div class="container" >
+            <div class="text-center mb-5" >
+                <span class="badge rounded-pill bg-primary-light text-primary px-3 py-2 mb-3">Fonctionnalités innovantes</span>
+                <h2 class="display-5 fw-bold mb-3">Une plateforme e-learning de nouvelle génération</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">Découvrez comment EduFlex révolutionne l'apprentissage en ligne avec des outils innovants</p>
+            </div>
+
+            <div class="row g-4" >
+                <!-- Feature 1 -->
+                <div class="col-md-4" >
+                    <div class="card h-100 border-0 shadow-sm hover-shadow card-ai">
+                        <div class="card-body p-5">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="feature-icon bg-primary-light rounded-circle">
+                                    <i class="fas fa-brain text-primary"></i>
+                                </div>
+                            </div>
+                            <span class="badge badge-ai mb-2">Intelligence artificielle</span>
+                            <h3 class="h4 fw-bold mb-3">Apprentissage personnalisé</h3>
+                            <p class="text-muted">Notre IA analyse votre style d'apprentissage et adapte le contenu pour maximiser votre progression et votre compréhension.</p>
+                            <ul class="text-muted ps-0 mt-4">
+                                <li class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Tests de positionnement adaptatifs</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Recommandations personnalisées</span>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Assistant pédagogique intelligent</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-shadow card-courses">
+                        <div class="card-body p-5">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="feature-icon bg-primary-light rounded-circle">
+                                    <i class="fas fa-graduation-cap text-primary"></i>
+                                </div>
+                            </div>
+                            <span class="badge badge-course mb-2">Contenus pédagogiques</span>
+                            <h3 class="h4 fw-bold mb-3">Cours interactifs et certifiants</h3>
+                            <p class="text-muted">Vidéos, quiz, exercices pratiques et examens pour un apprentissage immersif qui mène à des certifications reconnues.</p>
+                            <ul class="text-muted ps-0 mt-4">
+                                <li class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Contenu multimédia de qualité</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Organisation modulaire des cours</span>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Certificats vérifiables</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm hover-shadow card-community">
+                        <div class="card-body p-5">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="feature-icon bg-primary-light rounded-circle">
+                                    <i class="fas fa-users text-primary"></i>
+                                </div>
+                            </div>
+                            <span class="badge badge-ai mb-2">Communauté</span>
+                            <h3 class="h4 fw-bold mb-3">Apprentissage collaboratif</h3>
+                            <p class="text-muted">Forums, visioconférences et espaces d'échange pour apprendre ensemble et bénéficier de l'entraide entre apprenants.</p>
+                            <ul class="text-muted ps-0 mt-4">
+                                <li class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Forums thématiques</span>
+                                </li>
+                                <li class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Visioconférences intégrées</span>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span>Système de gamification</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section class="py-5 py-md-7 bg-light" id="modules">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge rounded-pill bg-primary-light text-primary px-3 py-2 mb-3">Architecture modulaire</span>
+                <h2 class="display-5 fw-bold mb-3">Une plateforme complète et évolutive</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">Découvrez les modules fonctionnels qui composent EduFlex pour une expérience d'apprentissage optimale</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Module 1 -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex">
+                                <div class="module-icon module-icon-users">
+                                    <i class="fas fa-user-shield fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold mb-3">Gestion des utilisateurs</h4>
+                                    <p class="text-muted mb-3">Authentification sécurisée, profils personnalisables et système de rôles adapté à chaque utilisateur.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-light text-dark">Authentification JWT</span>
+                                        <span class="badge bg-light text-dark">Conformité RGPD</span>
+                                        <span class="badge bg-light text-dark">Rôles personnalisés</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex">
+                                <div class="module-icon module-icon-content">
+                                    <i class="fas fa-book fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold mb-3">Contenus pédagogiques</h4>
+                                    <p class="text-muted mb-3">Organisation hiérarchique des cours avec éditeur intuitif et support pour différents formats de médias.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-light text-dark">Éditeur WYSIWYG</span>
+                                        <span class="badge bg-light text-dark">Mode hors-ligne</span>
+                                        <span class="badge bg-light text-dark">Structure modulaire</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex">
+                                <div class="module-icon module-icon-evaluation">
+                                    <i class="fas fa-clipboard-check fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold mb-3">Évaluation et certification</h4>
+                                    <p class="text-muted mb-3">QCM adaptatifs, examens finaux et système de certification automatisé avec vérification d'authenticité.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-light text-dark">Correction automatique</span>
+                                        <span class="badge bg-light text-dark">Feedback personnalisé</span>
+                                        <span class="badge bg-light text-dark">Certificats vérifiables</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex">
+                                <div class="module-icon module-icon-ai">
+                                    <i class="fas fa-robot fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold mb-3">Intelligence artificielle</h4>
+                                    <p class="text-muted mb-3">Personnalisation avancée de l'apprentissage avec systèmes de recommandation et assistant pédagogique.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-light text-dark">Tests adaptatifs</span>
+                                        <span class="badge bg-light text-dark">Recommandations IA</span>
+                                        <span class="badge bg-light text-dark">Chatbot pédagogique</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex">
+                                <div class="module-icon module-icon-community">
+                                    <i class="fas fa-comments fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold mb-3">Module communautaire</h4>
+                                    <p class="text-muted mb-3">Forums thématiques, système de questions/réponses et visioconférences intégrées pour un apprentissage collaboratif.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-light text-dark">Forums structurés</span>
+                                        <span class="badge bg-light text-dark">Visioconférences</span>
+                                        <span class="badge bg-light text-dark">Badges communautaires</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex">
+                                <div class="module-icon module-icon-dashboard">
+                                    <i class="fas fa-chart-line fa-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold mb-3">Tableau de bord</h4>
+                                    <p class="text-muted mb-3">Visualisation de la progression, statistiques d'apprentissage et analyse détaillée des performances.</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-light text-dark">Graphiques interactifs</span>
+                                        <span class="badge bg-light text-dark">Analyse de performance</span>
+                                        <span class="badge bg-light text-dark">Suivi personnalisé</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-5 py-md-7 bg-white" id="how-it-works">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge rounded-pill bg-primary-light text-primary px-3 py-2 mb-3">Simple et efficace</span>
+                <h2 class="display-5 fw-bold mb-3">Comment ça marche</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">Un processus en quatre étapes pour transformer votre apprentissage</p>
+            </div>
+
+            <div class="position-relative">
+                <!-- Timeline line (visible on desktop) -->
+                <div class="timeline-line d-none d-md-block"></div>
+
+                  <!-- Step 1 -->
+                  <div class="row timeline-item mb-5">
+                    <div class="col-md-6 mb-4 mb-md-0 position-relative">
+                        <div class="timeline-point">1</div>
+                        <div class="card border-0 shadow-sm ms-5 ms-md-0 me-md-4">
+                            <div class="card-body p-4">
+                                <h4 class="fw-bold mb-3">Créez votre compte</h4>
+                                <p class="text-muted mb-0">Inscrivez-vous gratuitement et complétez votre profil d'apprenant pour commencer l'aventure.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <video autoplay muted loop playsinline class="img-fluid rounded shadow-sm d-none d-md-block" >
+                            <source src="assets/images/create.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                </div>
+
+                <!-- Step 2 -->
+                <div class="row timeline-item mb-5">
+                    <div class="col-md-6 mb-4 mb-md-0 order-md-2 position-relative">
+                        <div class="timeline-point" style="margin-left: 80px;">2</div>
+                        <div class="card border-0 shadow-sm ms-5 ms-md-4">
+                            <div class="card-body p-4">
+                                <h4 class="fw-bold mb-3">Passez le test de niveau</h4>
+                                <p class="text-muted mb-0">Notre IA évalue vos connaissances et votre style d'apprentissage pour personnaliser votre parcours.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center order-md-1">
+                        <video autoplay muted loop playsinline class="img-fluid rounded shadow-sm d-none d-md-block" style="margin-top: -100px !important; ">
+                            <source src="assets/images/avancement.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="row timeline-item mb-5">
+                    <div class="col-md-6 mb-4 mb-md-0 position-relative">
+                        <div class="timeline-point" style="margin-left: 180px;">3</div>
+                        <div class="card border-0 shadow-sm ms-5 ms-md-0 me-md-4">
+                            <div class="card-body p-4">
+                                <h4 class="fw-bold mb-3">Suivez votre parcours personnalisé</h4>
+                                <p class="text-muted mb-0">Accédez à des contenus adaptés à votre niveau et bénéficiez des recommandations intelligentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <video autoplay muted loop playsinline class="img-fluid rounded shadow-sm d-none d-md-block" style="margin-top: -50px; margin-left: 0px !important ;">
+                            <source src="assets/images/suivi.mp4" type="video/mp4" >
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="row timeline-item">
+                    <div class="col-md-6 mb-4 mb-md-0 order-md-2 position-relative">
+                        <div class="timeline-point" style="margin-left: 100px;">4</div>
+                        <div class="card border-0 shadow-sm ms-5 ms-md-4">
+                            <div class="card-body p-4">
+                                <h4 class="fw-bold mb-3">Obtenez votre certification</h4>
+                                <p class="text-muted mb-0">Validez vos acquis avec des certificats reconnus et partagez vos réussites avec votre réseau.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center order-md-1" >
+                        <img src="assets/images/certificat.png" alt="Certification" class="img-fluid rounded shadow-sm d-none d-md-block" style="margin-left: 120px !important ;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Testimonials Section -->
+    <section class="py-5 py-md-7 bg-white" id="testimonials">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="badge rounded-pill bg-primary-light text-primary px-3 py-2 mb-3">Témoignages</span>
+                <h2 class="display-5 fw-bold mb-3">Ce que nos apprenants disent</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 700px;">Découvrez les expériences de ceux qui ont transformé leur apprentissage avec EduFlex</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Testimonial 1 -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-4">
+                                <img src="assets/images/1.png" alt="User" class="rounded-circle">
+                                <div class="ms-3">
+                                    <h5 class="fw-bold mb-1">Sophie Martin</h5>
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0">"L'approche personnalisée d'EduFlex m'a permis de progresser à mon rythme et d'obtenir ma certification en développement web en seulement 3 mois. L'IA a vraiment compris mes besoins !"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-4">
+                                <img src="assets/images/2.png" alt="User" class="rounded-circle">
+                                <div class="ms-3">
+                                    <h5 class="fw-bold mb-1">Thomas Dubois</h5>
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0">"En tant que professionnel en reconversion, j'avais besoin d'une formation efficace et flexible. EduFlex m'a proposé un parcours sur mesure qui a accéléré mon apprentissage."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm hover-shadow h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex mb-4">
+                                <img src="assets/images/3.png" alt="User" class="rounded-circle">
+                                <div class="ms-3">
+                                    <h5 class="fw-bold mb-1">Léa Bernard</h5>
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-muted mb-0">"L'assistant IA d'EduFlex est impressionnant ! Il m'a aidée à surmonter mes blocages en programmation et m'a fourni des explications adaptées à mon niveau de compréhension."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 py-md-7 bg-primary">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <h2 class="display-5 fw-bold text-white mb-3">Prêt à transformer votre façon d'apprendre ?</h2>
+                    <p class="lead text-white-50 mb-4">Rejoignez plus de 10 000 apprenants qui ont déjà transformé leur parcours éducatif avec EduFlex.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-light btn-lg px-4 py-3 rounded-pill">Commencer gratuitement</button>
+                        <button class="btn btn-outline-light btn-lg px-4 py-3 rounded-pill">Demander une démo</button>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card border-0 shadow rounded p-4">
+                        <div class="card-body">
+                            <h4 class="fw-bold mb-4 text-center">Inscrivez-vous pour un essai gratuit</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nom complet</label>
+                                    <input type="text" class="form-control form-control-lg" id="name" placeholder="Votre nom">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control form-control-lg" id="email" placeholder="votre@email.com">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="interest" class="form-label">Domaine d'intérêt</label>
+                                    <select class="form-select form-select-lg" id="interest">
+                                        <option selected>Choisissez un domaine</option>
+                                        <option value="1">Développement web</option>
+                                        <option value="2">Data Science</option>
+                                        <option value="3">Intelligence Artificielle</option>
+                                        <option value="4">Marketing Digital</option>
+                                        <option value="5">Design</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg w-100">Commencer maintenant</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a class="navbar-brand fw-bold mb-4 d-block" href="#">
+                        <span class="text-gradient">EduFlex</span>
+                    </a>
+                    <p class="text-white-50 mb-4">La plateforme d'apprentissage intelligente qui s'adapte à vos besoins pour vous aider à atteindre vos objectifs.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white-50 hover-text-primary"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white-50 hover-text-primary"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white-50 hover-text-primary"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white-50 hover-text-primary"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h5 class="fw-bold mb-4">EduFlex</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">À propos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Équipe</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Carrières</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h5 class="fw-bold mb-4">Formation</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Tous les cours</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Certifications</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Formateurs</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Prix</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h5 class="fw-bold mb-4">Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Aide</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Communauté</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h5 class="fw-bold mb-4">Légal</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Conditions</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Confidentialité</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Cookies</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">RGPD</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top border-secondary pt-4 mt-5">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <p class="text-white-50 mb-0">&copy; 2025 EduFlex. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <select class="form-select form-select-sm bg-dark text-white-50 border-secondary d-inline-block w-auto">
+                            <option selected>Français</option>
+                            <option>English</option>
+                            <option>Español</option>
+                            <option>Deutsch</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Connexion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Mot de passe</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="error-message" id="loginError"></div>
+                        <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signupModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Inscription</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label>Prénom</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Nom</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Mot de passe</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="error-message" id="signupError"></div>
+                        <div class="success-message" id="signupSuccess"></div>
+                        <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Gestion de l'inscription
+        // Add this script section to replace the existing one in index.html
+
+// Gestion de l'inscription
+document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const inputs = e.target.elements;
+    
+    const userData = {
+        firstName: inputs[0].value.trim(),
+        lastName: inputs[1].value.trim(),
+        email: inputs[2].value.trim(),
+        password: inputs[3].value,
+        role: 'student' // Default role, you can add a select field for this
+    };
+
+    // Clear previous messages
+    document.getElementById('signupError').textContent = '';
+    document.getElementById('signupSuccess').textContent = '';
+
+    try {
+        console.log('Sending signup request:', userData);
+        
+        const response = await fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(userData)
+        });
+
+        console.log('Signup response status:', response.status);
+        
+        const data = await response.json();
+        console.log('Signup response data:', data);
+        
+        if (response.ok) {
+            document.getElementById('signupSuccess').textContent = 'Inscription réussie ! Vous pouvez maintenant vous connecter.';
+            document.getElementById('signupSuccess').style.display = 'block';
+            
+            // Clear form
+            e.target.reset();
+            
+            // Close modal after delay
+            setTimeout(() => {
+                const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+                if (modal) {
+                    modal.hide();
+                }
+            }, 2000);
+            
+        } else {
+            document.getElementById('signupError').textContent = data.error || 'Erreur lors de l\'inscription';
+            document.getElementById('signupError').style.display = 'block';
+        }
+    } catch (error) {
+        console.error('Signup error:', error);
+        document.getElementById('signupError').textContent = 'Erreur de connexion au serveur';
+        document.getElementById('signupError').style.display = 'block';
+    }
+});
+
+// Gestion de la connexion
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const inputs = e.target.elements;
+    const email = inputs[0].value.trim();
+    const password = inputs[1].value;
+    
+    // Clear previous error
+    document.getElementById('loginError').textContent = '';
+    document.getElementById('loginError').style.display = 'none';
+    
+    try {
+        console.log('Attempting login for:', email);
+        
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        console.log('Login response status:', response.status);
+        
+        const data = await response.json();
+        console.log('Login response data:', data);
+        
+        if (response.ok) {
+            console.log('Login successful, redirecting to:', data.redirect);
+            
+            // Store user info in localStorage if needed
+            localStorage.setItem('user', JSON.stringify(data.user));
+            
+            // Redirect to appropriate page
+            window.location.href = data.redirect;
+            
+        } else {
+            document.getElementById('loginError').textContent = data.error || 'Erreur de connexion';
+            document.getElementById('loginError').style.display = 'block';
+        }
+
+    } catch (error) {
+        console.error('Login fetch error:', error);
+        document.getElementById('loginError').textContent = 'Erreur de connexion au serveur. Vérifiez que le serveur est démarré.';
+        document.getElementById('loginError').style.display = 'block';
+    }
+});
+
+// Show login modal if URL parameter is present
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('showLogin')) {
+        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        loginModal.show();
+    }
+});
+    </script>
+<script>
+// Add this to index.html
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('showLogin')) {
+        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        loginModal.show();
+    }
+});
+
+
+</script>
+
+<script>
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="QGANjseapL7xX2otrqVau";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+</body>
+</html>

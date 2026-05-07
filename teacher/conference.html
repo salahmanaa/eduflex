@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conférences | EduFlex</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            min-height: 100vh;
+        }
+
+     
+
+        .logo-container {
+            text-align: center;
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-container img {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .search-input {
+            border-radius: 25px;
+            border: 1px solid #e3e6f0;
+            padding: 0.75rem 1rem;
+            padding-left: 2.5rem;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            background: white;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+
+        
+
+        .badge {
+            font-size: 0.7rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            min-height: 100vh;
+            padding: 2rem;
+            background-color: #f8fafc;
+        }
+
+        .page-header {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Cards */
+        .card {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .card:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Start Conference Card */
+        .start-conference-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: none;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .icon-box i {
+            font-size: 2rem;
+        }
+
+        .btn-start-conference {
+            background: linear-gradient(135deg, #198754 0%, #157347 100%);
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-start-conference:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #157347 0%, #146c41 100%);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            color: white;
+        }
+
+        .btn-end-conference {
+            background: linear-gradient(135deg, #dc3545 0%, #bb2d3b 100%);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .btn-end-conference:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #bb2d3b 0%, #a02834 100%);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            color: white;
+        }
+
+        /* Active Conference Card */
+        .active-conference-card {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .active-conference-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .conference-code {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .conference-code-text {
+            font-family: 'Courier New', monospace;
+            font-size: 2rem;
+            letter-spacing: 0.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .participants-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .participant-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .participant-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .participant-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .participant-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #198754;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(25, 135, 84, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
+        }
+
+        .participants-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Toast Styles */
+        .custom-toast {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+            margin-bottom: 1rem;
+            min-width: 300px;
+        }
+
+        .toast-header {
+            background: linear-gradient(135deg, #198754 0%, #157347 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+        }
+
+        .toast-header.bg-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #bb2d3b 100%) !important;
+        }
+
+        .toast-body {
+            padding: 1rem;
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1050;
+        }
+
+       
+
+       
+    </style>
+</head>
+<body>
+     <!-- Sidebar -->
+     <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="prof-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-cours.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-etudiants.html">
+                        <i class="fas fa-user-graduate"></i> Mes étudiants
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="devoirs.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prof-quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="statistiques.html">
+                        <i class="fas fa-chart-bar"></i> Statistiques
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communauté</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-users"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="fas fa-comments"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="conference.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profileteacher.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="mb-1 fw-bold text-gradient">Conférences</h2>
+                        <p class="text-muted mb-0">Gérez vos conférences vidéo en direct</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown">
+                            <button class="btn btn-light position-relative" type="button" data-bs-toggle="dropdown">
+                                <i class="far fa-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow">
+                                <li><a class="dropdown-item" href="#">Nouvelle demande de conférence</a></li>
+                                <li><a class="dropdown-item" href="#">Nouveau message</a></li>
+                                <li><a class="dropdown-item" href="#">Rappel: Cours à 14h</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Active Conference State -->
+            <div id="no-conference" class="start-conference-card">
+                <div class="icon-box bg-success bg-opacity-10 text-success">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h4 class="fw-bold mb-3">Démarrer une nouvelle conférence</h4>
+                <p class="text-muted mb-4">Créez une conférence vidéo instantanée et partagez le code avec vos étudiants</p>
+                <button class="btn btn-start-conference" onclick="startConference()">
+                    <i class="fas fa-play me-2"></i>Démarrer une conférence
+                </button>
+            </div>
+
+            <!-- Active Conference State (Hidden by default) -->
+            <div id="active-conference" class="d-none">
+                <div class="active-conference-card">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center mb-3">
+                                <h3 class="mb-0 me-3">Conférence en cours</h3>
+                                <div class="status-indicator">
+                                    <div class="status-dot"></div>
+                                    <span>En direct</span>
+                                </div>
+                            </div>
+                            <p class="mb-3 opacity-90">Partagez ce code avec vos étudiants pour qu'ils puissent rejoindre la conférence</p>
+                            
+                            <div class="conference-code">
+                                <p class="mb-2 opacity-75">Code de la conférence</p>
+                                <p class="conference-code-text" id="conference-code">------</p>
+                            </div>
+
+                            <div class="participants-section">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5 class="mb-0">Participants</h5>
+                                    <div class="participants-count">
+                                        <i class="fas fa-users"></i>
+                                        <span id="participants-count">0</span>
+                                    </div>
+                                </div>
+                                <div id="participants-container">
+                                    <!-- Participants will be added here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-4 mt-md-0">
+                            <button class="btn btn-end-conference" onclick="endConference()">
+                                <i class="fas fa-times me-2"></i>Terminer la conférence
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentConferenceId = null;
+        let participantsInterval = null;
+
+        async function startConference() {
+            try {
+                const response = await fetch('/api/conferences', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        title: 'Conférence instantanée',
+                        description: 'Conférence vidéo en direct',
+                        startTime: new Date().toISOString(),
+                        duration: 60
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create conference');
+                }
+
+                const conference = await response.json();
+                currentConferenceId = conference._id;
+
+                // Start the conference
+                await fetch(`/api/conferences/${conference._id}/start`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+
+                // Show active conference UI
+                document.getElementById('no-conference').classList.add('d-none');
+                document.getElementById('active-conference').classList.remove('d-none');
+                document.getElementById('conference-code').textContent = conference.code;
+
+                // Join the conference room
+                window.open(`/conference-room.html?roomId=${conference.roomId}`, '_blank');
+
+                // Start polling for participants
+                startParticipantsPolling(conference._id);
+
+                showToast('Succès', 'La conférence a démarré avec succès', 'success');
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Erreur', 'Impossible de démarrer la conférence', 'error');
+            }
+        }
+
+        async function endConference() {
+            if (!currentConferenceId) return;
+
+            try {
+                const response = await fetch(`/api/conferences/${currentConferenceId}/end`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to end conference');
+                }
+
+                // Reset UI
+                document.getElementById('no-conference').classList.remove('d-none');
+                document.getElementById('active-conference').classList.add('d-none');
+                document.getElementById('conference-code').textContent = '------';
+                document.getElementById('participants-container').innerHTML = '';
+                document.getElementById('participants-count').textContent = '0';
+
+                // Stop polling for participants
+                if (participantsInterval) {
+                    clearInterval(participantsInterval);
+                    participantsInterval = null;
+                }
+
+                currentConferenceId = null;
+                showToast('Succès', 'La conférence est terminée', 'success');
+            } catch (error) {
+                console.error('Error:', error);
+                showToast('Erreur', 'Impossible de terminer la conférence', 'error');
+            }
+        }
+
+        function startParticipantsPolling(conferenceId) {
+            // Clear any existing interval
+            if (participantsInterval) {
+                clearInterval(participantsInterval);
+            }
+
+            // Update participants immediately and then every 5 seconds
+            updateParticipants(conferenceId);
+            participantsInterval = setInterval(() => updateParticipants(conferenceId), 5000);
+        }
+
+        async function updateParticipants(conferenceId) {
+            try {
+                const response = await fetch(`/api/conferences/${conferenceId}`, {
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch participants');
+                }
+
+                const conference = await response.json();
+                const container = document.getElementById('participants-container');
+                const countElement = document.getElementById('participants-count');
+                
+                countElement.textContent = conference.participants.length;
+                
+                if (conference.participants.length === 0) {
+                    container.innerHTML = '<div class="text-center py-3 opacity-75"><i class="fas fa-users fa-2x mb-2"></i><p class="mb-0">En attente de participants...</p></div>';
+                } else {
+                    container.innerHTML = conference.participants.map(participant => `
+                        <div class="participant-item">
+                            <div class="participant-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <div class="fw-medium">${participant.user.name || 'Participant'}</div>
+                                <small class="opacity-75">Connecté</small>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error updating participants:', error);
+            }
+        }
+
+        function showToast(title, message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = 'custom-toast';
+            toast.innerHTML = `
+                <div class="toast-header ${type === 'error' ? 'bg-danger' : ''}">
+                    <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'} me-2"></i>
+                    <strong class="me-auto">${title}</strong>
+                    <button type="button" class="btn-close btn-close-white" onclick="this.closest('.custom-toast').remove()"></button>
+                </div>
+                <div class="toast-body">
+                    ${message}
+                </div>
+            `;
+            document.querySelector('.toast-container').appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+        // Check for active conference on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/api/conferences/teacher', {
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch conferences');
+                }
+
+                const conferences = await response.json();
+                const activeConference = conferences.find(c => c.status === 'active');
+
+                if (activeConference) {
+                    currentConferenceId = activeConference._id;
+                    document.getElementById('no-conference').classList.add('d-none');
+                    document.getElementById('active-conference').classList.remove('d-none');
+                    document.getElementById('conference-code').textContent = activeConference.code;
+                    startParticipantsPolling(activeConference._id);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // Logout functionality
+        document.getElementById('logoutButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Add your logout logic here
+            console.log('Logout clicked');
+        });
+    </script>
+</body>
+</html>

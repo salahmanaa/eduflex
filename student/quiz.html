@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Quiz</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="student-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="my-courses.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="assignments.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="certificates.html">
+                        <i class="fas fa-certificate"></i> Certificats
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communauté</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-users"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="fas fa-comments"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="conferences.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Quiz et Évaluations</h2>
+            <div class="d-flex align-items-center">
+                <div class="me-3">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                        <input type="text" class="form-control border-start-0" placeholder="Rechercher un quiz...">
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-filter me-1"></i>Filtrer
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown">
+                        <li><a class="dropdown-item" href="#">Tous les quiz</a></li>
+                        <li><a class="dropdown-item" href="#">En cours</a></li>
+                        <li><a class="dropdown-item" href="#">Terminés</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Par cours</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz List -->
+        <div id="quizzesList">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="mb-0">Quiz disponibles</h4>
+                <div class="d-flex">
+                    <div class="btn-group me-2" role="group">
+                        <button type="button" class="btn btn-outline-primary active">Tous</button>
+                        <button type="button" class="btn btn-outline-primary">En cours</button>
+                        <button type="button" class="btn btn-outline-primary">À venir</button>
+                        <button type="button" class="btn btn-outline-primary">Terminés</button>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-sort me-1"></i>Trier par
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdown">
+                            <li><a class="dropdown-item" href="#">Date d'échéance (plus proche)</a></li>
+                            <li><a class="dropdown-item" href="#">Date de début (plus récent)</a></li>
+                            <li><a class="dropdown-item" href="#">Titre (A-Z)</a></li>
+                            <li><a class="dropdown-item" href="#">Cours</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quizzes Container -->
+            <div id="quizzesContainer" class="row g-4">
+                <!-- Quizzes will be loaded here dynamically -->
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Chargement...</span>
+                    </div>
+                    <p class="mt-2 text-muted">Chargement des quiz...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Interface (initially hidden) -->
+        <div id="quizContainer" class="d-none">
+            <div class="card mb-4">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-0" id="quizTitle">Titre du quiz</h4>
+                        <div class="text-muted small" id="quizCourse">Cours: Chargement...</div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="me-4 text-end">
+                            <div class="small text-muted">Temps restant</div>
+                            <div class="h5 mb-0 fw-bold" id="quizTimer">00:00</div>
+                        </div>
+                        <button class="btn btn-danger" id="submitQuizBtn">
+                            <i class="fas fa-paper-plane me-1"></i> Soumettre le quiz
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Progress Bar -->
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span id="progressText">Question 0 sur 0</span>
+                            <span id="timerInfo" class="text-muted"></span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div id="quizProgress" class="progress-bar bg-primary" role="progressbar" style="width: 0%" 
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Questions -->
+                    <div id="quizQuestions">
+                        <!-- Questions will be loaded here dynamically -->
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                        <button class="btn btn-outline-primary" id="prevQuestionBtn">
+                            <i class="fas fa-arrow-left me-1"></i> Question précédente
+                        </button>
+                        <button class="btn btn-primary" id="nextQuestionBtn">
+                            Question suivante <i class="fas fa-arrow-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Results (initially hidden) -->
+        <div id="quizResults" class="d-none">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">Résultats du quiz</h4>
+                </div>
+                <div class="card-body text-center py-5">
+                    <div class="mb-4">
+                        <div class="mx-auto rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center" 
+                             style="width: 120px; height: 120px;">
+                            <div>
+                                <h2 class="mb-0 fw-bold" id="quizScore">0/0</h2>
+                                <span class="text-muted">Score</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 id="quizFeedback" class="mb-4">Merci d'avoir complété le quiz !</h3>
+                    
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">Détails des réponses</h5>
+                                    <div class="mb-2">
+                                        <span class="badge border border-success text-success">Bonne réponse</span>
+                                        <span class="badge border border-danger text-danger">Mauvaise réponse</span>
+                                    </div>
+                                    <div id="quizDetails">
+                                        <!-- Quiz details will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="quiz.html" class="btn btn-outline-primary">
+                            <i class="fas fa-list me-1"></i> Retour à la liste des quiz
+                        </a>
+                        <a href="#" class="btn btn-primary" id="reviewQuizBtn">
+                            <i class="fas fa-redo me-1"></i> Revoir le quiz
+                        </a>
+                        <a href="#" class="btn btn-success" id="retakeQuizBtn" style="display:none;">
+                            <i class="fas fa-redo me-1"></i> Recommencer le quiz
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/assets/js/student-script.js"></script>
+</body>
+</html>

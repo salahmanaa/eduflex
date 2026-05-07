@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Gestion des Utilisateurs</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+</head>
+<body>
+    <!-- Sidebar (Same as admin-dashboard.html) -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Administration</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-users.html">
+                        <i class="fas fa-users"></i> Utilisateurs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-instructors.html">
+                        <i class="fas fa-chalkboard-teacher"></i> Formateurs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-analytics.html">
+                        <i class="fas fa-chart-line"></i> Analytiques
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-reports.html">
+                        <i class="fas fa-file-alt"></i> Rapports
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communication</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-forum.html">
+                        <i class="fas fa-comments"></i> Forum
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Système</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-profile.html">
+                        <i class="fas fa-user-cog"></i> Mon Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Gestion des Utilisateurs</h2>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addAdminModal">
+                    <i class="fas fa-user-shield"></i> Ajouter un administrateur
+                </button>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Total Étudiants</h6>
+                        <h2 class="mb-0" id="total-students">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Actifs (placeholder)</h6>
+                        <h2 class="mb-0" id="active-students">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">Inactifs (placeholder)</h6>
+                        <h2 class="mb-0" id="inactive-students">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Management Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="d-flex gap-2">
+                        <input type="search" id="searchInput" class="form-control" placeholder="Rechercher un utilisateur...">
+                        <button class="btn btn-primary" id="searchBtn">Rechercher</button>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Date d'inscription</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <tr><td colspan="6" class="text-center">Chargement...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination (not dynamic for now) -->
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Précédent</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Suivant</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Student Modal -->
+    <div class="modal fade" id="editStudentModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modifier l'étudiant</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-student-form">
+                        <input type="hidden" name="id">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Prénom</label>
+                                <input type="text" name="firstName" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nom</label>
+                                <input type="text" name="lastName" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Téléphone</label>
+                            <input type="text" name="phone" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date de naissance</label>
+                            <input type="date" name="birthDate" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" id="update-student-btn" class="btn btn-primary">Mettre à jour</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Admin Modal -->
+    <div class="modal fade" id="addAdminModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajouter un administrateur</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="add-admin-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Prénom</label>
+                                <input type="text" name="firstName" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Nom</label>
+                                <input type="text" name="lastName" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Mot de passe</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" id="add-admin-btn" class="btn btn-primary">Ajouter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const studentsTableBody = document.getElementById('studentsTableBody');
+        const editStudentModal = new bootstrap.Modal(document.getElementById('editStudentModal'));
+        const editStudentForm = document.getElementById('edit-student-form');
+        const updateStudentBtn = document.getElementById('update-student-btn');
+        const totalStudentsCard = document.getElementById('total-students');
+        const activeStudentsCard = document.getElementById('active-students');
+        const inactiveStudentsCard = document.getElementById('inactive-students');
+        let studentsData = [];
+
+        async function fetchStudents() {
+            try {
+                const response = await fetch('/api/admin/students');
+                if (!response.ok) throw new Error('Erreur lors du chargement des étudiants');
+                studentsData = await response.json();
+                displayStudents(studentsData);
+                updateStatistics(studentsData);
+            } catch (error) {
+                studentsTableBody.innerHTML = `<tr><td colspan="6" class="text-center text-danger">${error.message}</td></tr>`;
+            }
+        }
+
+        function displayStudents(students) {
+            studentsTableBody.innerHTML = '';
+            if (students.length === 0) {
+                studentsTableBody.innerHTML = '<tr><td colspan="6" class="text-center">Aucun étudiant trouvé.</td></tr>';
+                return;
+            }
+            students.forEach(student => {
+                const row = `
+                    <tr>
+                        <td>#${student._id.slice(-4)}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="${student.profilePhoto || 'https://placehold.co/40x40?text=' + student.firstName.charAt(0)}" class="rounded-circle me-2" alt="User" width="40" height="40">
+                                <div>
+                                    <p class="mb-0 fw-medium">${student.firstName} ${student.lastName}</p>
+                                    <small class="text-muted">Étudiant</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${student.email}</td>
+                        <td>${student.createdAt ? new Date(student.createdAt).toLocaleDateString() : ''}</td>
+                        <td><span class="badge bg-success">Actif</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary me-1" data-id="${student._id}" title="Éditer"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" data-id="${student._id}" title="Supprimer"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+                studentsTableBody.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        function updateStatistics(students) {
+            totalStudentsCard.textContent = students.length;
+            // Placeholder: all students are "active" for now
+            activeStudentsCard.textContent = students.length;
+            inactiveStudentsCard.textContent = 0;
+        }
+
+        // Edit student
+        studentsTableBody.addEventListener('click', function(e) {
+            if (e.target.closest('.btn-primary')) {
+                const studentId = e.target.closest('.btn-primary').dataset.id;
+                const student = studentsData.find(s => s._id === studentId);
+                if (student) {
+                    editStudentForm.elements.id.value = student._id;
+                    editStudentForm.elements.firstName.value = student.firstName;
+                    editStudentForm.elements.lastName.value = student.lastName;
+                    editStudentForm.elements.email.value = student.email;
+                    editStudentForm.elements.phone.value = student.phone || '';
+                    editStudentForm.elements.birthDate.value = student.birthDate ? student.birthDate.split('T')[0] : '';
+                    editStudentModal.show();
+                }
+            }
+            // Delete student
+            if (e.target.closest('.btn-danger')) {
+                const studentId = e.target.closest('.btn-danger').dataset.id;
+                if (confirm('Êtes-vous sûr de vouloir supprimer cet étudiant ?')) {
+                    deleteStudent(studentId);
+                }
+            }
+        });
+
+        async function deleteStudent(studentId) {
+            try {
+                const response = await fetch(`/api/admin/students/${studentId}`, { method: 'DELETE' });
+                if (!response.ok) throw new Error('Erreur lors de la suppression');
+                fetchStudents();
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        updateStudentBtn.addEventListener('click', async function() {
+            const formData = new FormData(editStudentForm);
+            const data = Object.fromEntries(formData.entries());
+            const studentId = data.id;
+            try {
+                const response = await fetch(`/api/admin/students/${studentId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (!response.ok) throw new Error('Erreur lors de la mise à jour');
+                editStudentModal.hide();
+                fetchStudents();
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+
+        const addAdminForm = document.getElementById('add-admin-form');
+        const addAdminBtn = document.getElementById('add-admin-btn');
+        const addAdminModal = new bootstrap.Modal(document.getElementById('addAdminModal'));
+
+        addAdminBtn.addEventListener('click', async function() {
+            const formData = new FormData(addAdminForm);
+            const data = Object.fromEntries(formData.entries());
+            try {
+                const response = await fetch('/api/admin/admins', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.message || 'Erreur lors de la création de l\'administrateur');
+                }
+                addAdminModal.hide();
+                addAdminForm.reset();
+                alert('Administrateur ajouté avec succès !');
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+
+        document.querySelectorAll('a').forEach(function(link) {
+            if (link.textContent.includes('Déconnexion')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
+                        .then(() => window.location.href = '../index.html');
+                });
+            }
+        });
+
+        // Initial fetch
+        fetchStudents();
+    });
+    </script>
+</body>
+</html> 

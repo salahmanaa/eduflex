@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Devoirs</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Sidebar (Same as in prof-dashboard.html) -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="prof-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-cours.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-etudiants.html">
+                        <i class="fas fa-user-graduate"></i> Mes étudiants
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="devoirs.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prof-quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="statistiques.html">
+                        <i class="fas fa-chart-bar"></i> Statistiques
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communauté</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-users"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="fas fa-comments"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="conference.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profileteacher.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Devoirs</h2>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#newAssignmentModal">
+                    <i class="fas fa-plus me-2"></i>Créer un devoir
+                </button>
+                <div class="position-relative me-3">
+                    <button class="btn btn-light position-relative" type="button">
+                        <i class="far fa-bell"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </button>
+                </div>
+                <!-- Profile Dropdown (Same as in prof-dashboard.html) -->
+            </div>
+        </div>
+
+        <!-- Assignment Filters -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="Rechercher un devoir...">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option value="">Tous les cours</option>
+                            <option>Introduction à l'IA</option>
+                            <option>Développement Web</option>
+                            <option>Data Science</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option value="">Statut</option>
+                            <option>En cours</option>
+                            <option>À venir</option>
+                            <option>Terminé</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option value="">Trier par</option>
+                            <option>Date limite</option>
+                            <option>Soumissions</option>
+                            <option>Cours</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assignments List -->
+        <div class="row g-4">
+            <!-- Assignment Card 1 -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge badge-ai">Intelligence Artificielle</span>
+                            <span class="badge bg-warning text-dark">En cours</span>
+                        </div>
+                        <h5 class="card-title fw-bold mb-2">Projet : Classification d'images avec CNN</h5>
+                        <p class="text-muted mb-3">Implémentation d'un réseau de neurones convolutif pour la classification d'images.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-users me-2 text-muted"></i>
+                                <span>32 soumissions / 42 étudiants</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock me-2 text-muted"></i>
+                                <span>2 jours restants</span>
+                            </div>
+                        </div>
+                        <div class="progress mb-3" style="height: 8px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 76%" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary">Voir les soumissions</button>
+                            <div class="dropdown">
+                                <button class="btn btn-light" data-bs-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Modifier</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>Aperçu</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-bell me-2"></i>Rappel</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assignment Card 2 -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge badge-course">Développement Web</span>
+                            <span class="badge bg-warning text-dark">En cours</span>
+                        </div>
+                        <h5 class="card-title fw-bold mb-2">TP : Application React avec API REST</h5>
+                        <p class="text-muted mb-3">Création d'une application React complète avec intégration d'API REST.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-users me-2 text-muted"></i>
+                                <span>28 soumissions / 35 étudiants</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock me-2 text-muted"></i>
+                                <span>5 jours restants</span>
+                            </div>
+                        </div>
+                        <div class="progress mb-3" style="height: 8px;">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary">Voir les soumissions</button>
+                            <div class="dropdown">
+                                <button class="btn btn-light" data-bs-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Modifier</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>Aperçu</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-bell me-2"></i>Rappel</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assignment Card 3 -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge badge-ai">Data Science</span>
+                            <span class="badge bg-success">À venir</span>
+                        </div>
+                        <h5 class="card-title fw-bold mb-2">Analyse de données : Prédiction de séries temporelles</h5>
+                        <p class="text-muted mb-3">Projet d'analyse et de prédiction de séries temporelles avec Python.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-users me-2 text-muted"></i>
+                                <span>0 soumissions / 23 étudiants</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock me-2 text-muted"></i>
+                                <span>Débute dans 2 jours</span>
+                            </div>
+                        </div>
+                        <div class="progress mb-3" style="height: 8px;">
+                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary">Voir les détails</button>
+                            <div class="dropdown">
+                                <button class="btn btn-light" data-bs-toggle="dropdown">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-edit me-2"></i>Modifier</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-eye me-2"></i>Aperçu</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-bell me-2"></i>Rappel</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-trash-alt me-2"></i>Supprimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Assignment Modal -->
+    <div class="modal fade" id="newAssignmentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Créer un nouveau devoir</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Titre du devoir</label>
+                            <input type="text" class="form-control" name="title" placeholder="Entrez le titre du devoir">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Cours</label>
+                                <select class="form-select" id="select-course" name="course">
+                                    <option>Intelligence Artificielle</option>
+                                    <option>Développement Web</option>
+                                    <option>Data Science</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Type de devoir</label>
+                                <select class="form-select" name="type">
+                                    <option>Projet</option>
+                                    <option>TP</option>
+                                    <option>Exercice</option>
+                                    <option>Quiz</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" name="description" rows="4" placeholder="Décrivez le devoir"></textarea>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Date de début</label>
+                                <input type="datetime-local" class="form-control" name="startDate">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Date limite</label>
+                                <input type="datetime-local" class="form-control" name="endDate">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fichiers joints</label>
+                            <input type="file" class="form-control" name="pdf">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Points</label>
+                            <input type="number" class="form-control" name="points" min="0" step="1">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Créer le devoir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Assignment Modal -->
+    <div class="modal fade" id="editAssignmentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Modifier le devoir</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-devoir-form">
+                        <input type="hidden" name="devoirId" id="edit-devoir-id">
+                        <div class="mb-3">
+                            <label class="form-label">Titre du devoir</label>
+                            <input type="text" class="form-control" name="title" id="edit-devoir-title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" name="description" id="edit-devoir-description" rows="4"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Remplacer le fichier PDF (optionnel)</label>
+                            <input type="file" class="form-control" name="pdf" id="edit-devoir-file">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for viewing student submissions for a devoir -->
+    <div class="modal fade" id="submissionsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Soumissions des étudiants</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="devoir-submissions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/logout.js"></script>
+    <script src="../assets/js/prof-devoirs.js"></script>
+</body>
+</html> 

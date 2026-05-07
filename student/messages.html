@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Messages Étudiant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        :root {
+            --primary: #3a0ca3;
+            --secondary: #4cc9f0;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --primary-light: rgba(58, 12, 163, 0.1);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        
+        
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .message-bubble {
+            border-radius: 18px;
+            padding: 10px 15px;
+            max-width: 80%;
+            margin-bottom: 10px;
+        }
+        
+        .message-sent {
+            background-color: var(--primary);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message-received {
+            background-color: #f0f2f5;
+            color: var(--dark);
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .group-card {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .group-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .group-card.active {
+            border-left: 4px solid var(--accent);
+            background-color: var(--primary-light);
+        }
+        
+        .chat-container {
+            height: calc(100vh - 200px);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="student-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="my-courses.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="assignments.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="certificates.html">
+                        <i class="fas fa-certificate"></i> Certificats
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communauté</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-users"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link   active" href="messages.html">
+                        <i class="fas fa-comments"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="conferences.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Discussions de groupe</h2>
+            <div class="d-flex align-items-center">
+                <div class="dropdown navbar-profile">
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Content -->
+        <div class="row g-4">
+            <!-- Groups List -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-white p-3">
+                        <h5 class="mb-0">Mes groupes</h5>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary w-100 mb-3" id="joinGroupBtn">
+                            <i class="fas fa-plus me-1"></i> Rejoindre un groupe
+                        </button>
+                        <div class="list-group" id="groupsList">
+                            <!-- Groups will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="col-md-8">
+                <div class="card chat-container">
+                    <!-- Chat Header -->
+                    <div class="card-header bg-white p-3" id="groupChatHeader">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar bg-primary text-white rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 1.2rem;" id="groupIcon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0" id="groupName">Sélectionnez un groupe</h6>
+                                <p class="text-muted small mb-0" id="groupCode"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="card-body chat-messages" id="groupChatMessages">
+                        <div class="text-center py-5">
+                            <i class="fas fa-comments fa-3x text-muted mb-3"></i>
+                            <h5>Sélectionnez un groupe pour commencer à discuter</h5>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="card-footer bg-white p-3" id="groupChatInput" style="display: none;">
+                        <form id="messageForm" class="d-flex">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="messageInput" placeholder="Écrivez votre message..." required>
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Group Modal -->
+    <div class="modal fade" id="joinGroupModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rejoindre un groupe</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="joinGroupForm">
+                        <div class="mb-3">
+                            <label class="form-label">Code du groupe</label>
+                            <input type="text" class="form-control" name="code" placeholder="Entrez le code à 6 caractères" required>
+                            <small class="text-muted">Demandez le code à votre professeur</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="confirmJoinGroupBtn">Rejoindre</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const groupsList = document.getElementById('groupsList');
+            const groupChatHeader = document.getElementById('groupChatHeader');
+            const groupChatMessages = document.getElementById('groupChatMessages');
+            const groupChatInput = document.getElementById('groupChatInput');
+            const groupName = document.getElementById('groupName');
+            const groupCode = document.getElementById('groupCode');
+            const groupIcon = document.getElementById('groupIcon');
+            const messageForm = document.getElementById('messageForm');
+            const messageInput = document.getElementById('messageInput');
+            const joinGroupBtn = document.getElementById('joinGroupBtn');
+            const confirmJoinGroupBtn = document.getElementById('confirmJoinGroupBtn');
+            
+            let selectedGroupId = null;
+            let messageInterval = null;
+            
+            // Load student's groups
+            async function loadGroups() {
+                try {
+                    const response = await fetch('/api/groups/student', {
+                        credentials: 'include'
+                    });
+                    if (!response.ok) throw new Error('Failed to load groups');
+                    const groups = await response.json();
+                    renderGroups(groups);
+                } catch (error) {
+                    console.error('Error loading groups:', error);
+                    Swal.fire('Erreur', 'Impossible de charger les groupes', 'error');
+                }
+            }
+            
+            function renderGroups(groups) {
+                groupsList.innerHTML = '';
+                
+                if (groups.length === 0) {
+                    groupsList.innerHTML = `
+                        <div class="text-center py-4">
+                            <i class="fas fa-users fa-2x text-muted mb-3"></i>
+                            <p class="mb-0">Vous n'avez rejoint aucun groupe</p>
+                            <p class="text-muted small">Cliquez sur "Rejoindre un groupe" pour en rejoindre un</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                groups.forEach(group => {
+                    const groupItem = document.createElement('div');
+                    groupItem.className = `list-group-item list-group-item-action py-3 group-card ${selectedGroupId === group._id ? 'active' : ''}`;
+                    groupItem.innerHTML = `
+                        <div class="d-flex align-items-center">
+                            <div class="avatar bg-primary text-white rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">${group.name}</h6>
+                                <p class="text-muted small mb-0">Professeur: ${group.teacher.name} | Code: ${group.code}</p>
+                            </div>
+                        </div>
+                    `;
+                    groupItem.addEventListener('click', () => selectGroup(group));
+                    groupsList.appendChild(groupItem);
+                });
+            }
+            
+            function selectGroup(group) {
+                selectedGroupId = group._id;
+                groupName.textContent = group.name;
+                groupCode.textContent = `Professeur: ${group.teacher.name} | Code: ${group.code}`;
+                groupIcon.innerHTML = '<i class="fas fa-users"></i>';
+                groupChatInput.style.display = 'block';
+                
+                // Clear any existing interval
+                if (messageInterval) clearInterval(messageInterval);
+                
+                // Load messages and set interval to refresh
+                loadMessages();
+                messageInterval = setInterval(loadMessages, 3000);
+                
+                // Update UI
+                renderGroups([group]); // Re-render to highlight selected
+            }
+            
+            async function loadMessages() {
+                if (!selectedGroupId) return;
+                
+                try {
+                    const response = await fetch(`/api/groups/${selectedGroupId}/messages`, {
+                        credentials: 'include'
+                    });
+                    if (!response.ok) throw new Error('Failed to load messages');
+                    const messages = await response.json();
+                    renderMessages(messages);
+                } catch (error) {
+                    console.error('Error loading messages:', error);
+                }
+            }
+            
+            function renderMessages(messages) {
+                if (messages.length === 0) {
+                    groupChatMessages.innerHTML = `
+                        <div class="text-center py-5">
+                            <i class="fas fa-comment-slash fa-3x text-muted mb-3"></i>
+                            <h5>Aucun message dans ce groupe</h5>
+                            <p class="text-muted">Soyez le premier à envoyer un message !</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                groupChatMessages.innerHTML = '';
+                messages.forEach(msg => {
+                    const isTeacher = msg.sender.role === 'teacher';
+                    const bubbleClass = isTeacher ? 'message-received' : 'message-sent';
+                    const alignClass = isTeacher ? 'justify-content-start' : 'justify-content-end';
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `d-flex ${alignClass} mb-3`;
+                    messageDiv.innerHTML = `
+                        <div class="${bubbleClass} message-bubble">
+                            <div class="fw-bold">${msg.sender.name} ${isTeacher ? '(Professeur)' : ''}</div>
+                            <div>${msg.content}</div>
+                            <div class="text-end small mt-1">${new Date(msg.createdAt).toLocaleTimeString()}</div>
+                        </div>
+                    `;
+                    groupChatMessages.appendChild(messageDiv);
+                });
+                
+                // Scroll to bottom
+                groupChatMessages.scrollTop = groupChatMessages.scrollHeight;
+            }
+            
+            // Event listeners
+            joinGroupBtn.addEventListener('click', () => {
+                const modal = new bootstrap.Modal(document.getElementById('joinGroupModal'));
+                modal.show();
+            });
+            
+            confirmJoinGroupBtn.addEventListener('click', async () => {
+                const code = document.querySelector('#joinGroupForm input[name="code"]').value.trim();
+                
+                if (!code) {
+                    Swal.fire('Erreur', 'Veuillez entrer un code de groupe', 'error');
+                    return;
+                }
+                
+                try {
+                    const response = await fetch('/api/groups/join', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include',
+                        body: JSON.stringify({ code })
+                    });
+                    
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.error || 'Failed to join group');
+                    }
+                    
+                    const group = await response.json();
+                    Swal.fire('Succès', `Vous avez rejoint le groupe "${group.name}"`, 'success');
+                    
+                    // Close modal
+                    bootstrap.Modal.getInstance(document.getElementById('joinGroupModal')).hide();
+                    
+                    // Load updated groups
+                    loadGroups();
+                    
+                } catch (error) {
+                    console.error('Error joining group:', error);
+                    Swal.fire('Erreur', error.message || 'Échec de rejoindre le groupe', 'error');
+                }
+            });
+            
+            messageForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const content = messageInput.value.trim();
+                
+                if (!content || !selectedGroupId) return;
+                
+                try {
+                    const response = await fetch(`/api/groups/${selectedGroupId}/messages`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include',
+                        body: JSON.stringify({ content })
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to send message');
+                    
+                    messageInput.value = '';
+                    // Reload messages immediately
+                    loadMessages();
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                    Swal.fire('Erreur', 'Échec de l\'envoi du message', 'error');
+                }
+            });
+            
+            // Initialize
+            loadGroups();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Mes Cours</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="student-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="my-courses.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="assignments.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="certificates.html">
+                        <i class="fas fa-certificate"></i> Certificats
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communication</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-comments"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="fas fa-envelope"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="conferences.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Mes cours</h2>
+            <div class="d-flex align-items-center">
+                <div class="position-relative me-3">
+                   
+                </div>
+                <div class="dropdown navbar-profile">
+                  
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user-circle"></i> Mon profil</a></li>
+                        <li><a class="dropdown-item" href="certificates.html"><i class="fas fa-certificate"></i> Mes certificats</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="../index.html"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="fas fa-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Rechercher un cours...">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option selected>Statut</option>
+                            <option>En cours</option>
+                            <option>Complété</option>
+                            <option>Non commencé</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option selected>Catégorie</option>
+                            <option>Développement</option>
+                            <option>Design</option>
+                            <option>Data Science</option>
+                            <option>Marketing</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option selected>Trier par</option>
+                            <option>Date (récent)</option>
+                            <option>Date (ancien)</option>
+                            <option>Progrès (croissant)</option>
+                            <option>Progrès (décroissant)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Tabs -->
+        <ul class="nav nav-tabs mb-4" id="coursesTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active fw-medium" id="in-progress-tab" data-bs-toggle="tab" data-bs-target="#in-progress" type="button" role="tab" aria-controls="in-progress" aria-selected="true">
+                    En cours (4)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fw-medium" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab" aria-controls="completed" aria-selected="false">
+                    Complétés (2)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fw-medium" id="saved-tab" data-bs-toggle="tab" data-bs-target="#saved" type="button" role="tab" aria-controls="saved" aria-selected="false">
+                    Sauvegardés (3)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fw-medium" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="false">
+                    Tous (9)
+                </button>
+            </li>
+        </ul>
+        
+        <!-- Course Tab Content -->
+        <div class="tab-content" id="coursesTabsContent">
+            <!-- In Progress Courses -->
+            <div class="tab-pane fade show active" id="in-progress" role="tabpanel" aria-labelledby="in-progress-tab">
+                <div class="row g-4" id="in-progress-grid">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Completed Courses -->
+            <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                <div class="row g-4" id="completed-grid">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Available/Saved Courses -->
+            <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-tab">
+                <div class="row g-4" id="saved-grid">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- All Courses -->
+            <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+                <div class="row g-4" id="all-grid">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recommended Courses Section -->
+        <div class="mt-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold">Cours recommandés pour vous</h3>
+                <a href="#" class="text-decoration-none">Voir tout <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Recommended Course 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/600x400/5461FF/FFFFFF?text=Node.js" class="card-img-top" alt="Node.js">
+                            <span class="badge bg-warning position-absolute top-0 end-0 m-2">Populaire</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge badge-ai">Développement</span>
+                                <small class="text-muted">14 leçons</small>
+                            </div>
+                            <h5 class="card-title fw-bold mb-1">Node.js pour Backend</h5>
+                            <p class="text-muted mb-3">M. Antoine Lefèvre</p>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center me-3">
+                                        <i class="fas fa-user-graduate text-muted me-1"></i>
+                                        <small class="text-muted">950 étudiants</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-star text-warning me-1"></i>
+                                        <small class="text-muted">4.7/5</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-outline-primary">Voir le cours</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Course 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/600x400/36B37E/FFFFFF?text=SQL" class="card-img-top" alt="SQL">
+                            <span class="badge bg-danger position-absolute top-0 end-0 m-2">Nouveau</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge badge-ai">Data</span>
+                                <small class="text-muted">10 leçons</small>
+                            </div>
+                            <h5 class="card-title fw-bold mb-1">SQL pour Data Analysis</h5>
+                            <p class="text-muted mb-3">Mme. Laure Simon</p>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center me-3">
+                                        <i class="fas fa-user-graduate text-muted me-1"></i>
+                                        <small class="text-muted">420 étudiants</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-star text-warning me-1"></i>
+                                        <small class="text-muted">4.8/5</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-outline-primary">Voir le cours</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Course 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/600x400/FFAB00/FFFFFF?text=UI+Design" class="card-img-top" alt="UI Design">
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge badge-course">Design</span>
+                                <small class="text-muted">8 leçons</small>
+                            </div>
+                            <h5 class="card-title fw-bold mb-1">UI Design Mobile</h5>
+                            <p class="text-muted mb-3">M. François Mercier</p>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center me-3">
+                                        <i class="fas fa-user-graduate text-muted me-1"></i>
+                                        <small class="text-muted">620 étudiants</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-star text-warning me-1"></i>
+                                        <small class="text-muted">4.5/5</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-outline-primary">Voir le cours</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recommended Course 4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="position-relative">
+                            <img src="https://placehold.co/600x400/5D7DFF/FFFFFF?text=Git" class="card-img-top" alt="Git">
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge badge-ai">Développement</span>
+                                <small class="text-muted">6 leçons</small>
+                            </div>
+                            <h5 class="card-title fw-bold mb-1">Git & GitHub Avancé</h5>
+                            <p class="text-muted mb-3">M. Marc Durand</p>
+                            <div class="mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center me-3">
+                                        <i class="fas fa-user-graduate text-muted me-1"></i>
+                                        <small class="text-muted">780 étudiants</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-star text-warning me-1"></i>
+                                        <small class="text-muted">4.6/5</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-outline-primary">Voir le cours</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="mt-5 pt-4 pb-3 border-top">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-muted mb-1">© 2024 EduFlex. Tous droits réservés.</p>
+                    <p class="text-muted small">Une plateforme d'apprentissage en ligne pour tous.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-decoration-none me-3">Confidentialité</a>
+                    <a href="#" class="text-decoration-none me-3">Conditions</a>
+                    <a href="#" class="text-decoration-none">Aide</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/logout.js"></script>
+    <!-- Custom JS -->
+    <script>
+        let currentUserId = null;
+
+        // Function to show toast notifications
+        function showToast(message, type = 'info') {
+            const toastContainer = document.createElement('div');
+            toastContainer.style.position = 'fixed';
+            toastContainer.style.top = '20px';
+            toastContainer.style.right = '20px';
+            toastContainer.style.zIndex = '1050';
+            
+            toastContainer.innerHTML = `
+                <div class="toast align-items-center text-white bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(toastContainer);
+            const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'), { delay: 5000 });
+            toast.show();
+            
+            toastContainer.addEventListener('hidden.bs.toast', () => {
+                toastContainer.remove();
+            });
+        }
+
+        // Check authentication and get user info
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/auth/session', {
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    window.location.href = '../login.html';
+                    return false;
+                }
+                
+                const data = await response.json();
+                if (!data.isLoggedIn || data.user.role !== 'student') {
+                    window.location.href = '../login.html';
+                    return false;
+                }
+                
+                currentUserId = data.user._id;
+                return true;
+            } catch (error) {
+                console.error('Auth check error:', error);
+                window.location.href = '../login.html';
+                return false;
+            }
+        }
+
+        // Function to enroll in a course
+        async function enrollInCourse(courseId) {
+            try {
+                const response = await fetch(`/api/courses/${courseId}/enroll`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Échec de l\'inscription au cours');
+                }
+
+                showToast('Inscription au cours réussie!', 'success');
+                await loadCourses(); // Reload courses to update the UI
+            } catch (error) {
+                console.error('Enrollment error:', error);
+                showToast(error.message || 'Échec de l\'inscription au cours', 'danger');
+            }
+        }
+
+        // Function to download course PDF
+        async function downloadCoursePDF(courseId, fileId, fileName) {
+            try {
+                const response = await fetch(`/api/courses/${courseId}/pdf/${fileId}`, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Échec du téléchargement du PDF');
+                }
+
+                // Create a blob from the PDF content
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                
+                // Create a temporary link and trigger download
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName || 'course-material.pdf';
+                document.body.appendChild(a);
+                a.click();
+                
+                // Cleanup
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                showToast('PDF téléchargé avec succès', 'success');
+            } catch (error) {
+                console.error('Download error:', error);
+                showToast(error.message || 'Échec du téléchargement du PDF', 'danger');
+            }
+        }
+
+        // Load courses function
+        async function loadCourses() {
+            const inProgressGrid = document.getElementById('in-progress-grid');
+            const completedGrid = document.getElementById('completed-grid');
+            const savedGrid = document.getElementById('saved-grid');
+            const allGrid = document.getElementById('all-grid');
+            
+            try {
+                // Fetch enrolled courses with complete data
+                const enrolledResponse = await fetch('/api/courses?includeContent=true', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                // Fetch available courses
+                const availableResponse = await fetch('/api/courses/available', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                if (!enrolledResponse.ok || !availableResponse.ok) {
+                    throw new Error('Échec du chargement des cours');
+                }
+
+                const enrolledCourses = await enrolledResponse.json();
+                const availableCourses = await availableResponse.json();
+                
+                console.log('Enrolled courses:', enrolledCourses); // Debug log
+                console.log('Available courses:', availableCourses); // Debug log
+
+                // Process enrolled courses
+                const inProgressCourses = enrolledCourses.filter(course => {
+                    const student = course.students.find(s => s.studentId === currentUserId);
+                    return student && student.progress < 100;
+                });
+
+                const completedCourses = enrolledCourses.filter(course => {
+                    const student = course.students.find(s => s.studentId === currentUserId);
+                    return student && student.progress === 100;
+                });
+
+                // Update tab counters
+                document.querySelector('#in-progress-tab').textContent = `En cours (${inProgressCourses.length})`;
+                document.querySelector('#completed-tab').textContent = `Complétés (${completedCourses.length})`;
+                document.querySelector('#saved-tab').textContent = `Disponibles (${availableCourses.length})`;
+                document.querySelector('#all-tab').textContent = `Tous (${enrolledCourses.length + availableCourses.length})`;
+
+                // Display courses
+                inProgressGrid.innerHTML = inProgressCourses.length ? 
+                    inProgressCourses.map(course => createCourseCard(course, true)).join('') :
+                    '<div class="col-12 text-center"><p class="text-muted">Aucun cours en cours</p></div>';
+
+                completedGrid.innerHTML = completedCourses.length ?
+                    completedCourses.map(course => createCourseCard(course, true)).join('') :
+                    '<div class="col-12 text-center"><p class="text-muted">Aucun cours complété</p></div>';
+
+                savedGrid.innerHTML = availableCourses.length ?
+                    availableCourses.map(course => createCourseCard(course, false)).join('') :
+                    '<div class="col-12 text-center"><p class="text-muted">Aucun cours disponible</p></div>';
+
+                allGrid.innerHTML = [...enrolledCourses, ...availableCourses].length ?
+                    [...enrolledCourses, ...availableCourses]
+                        .map(course => createCourseCard(course, enrolledCourses.some(ec => ec._id === course._id)))
+                        .join('') :
+                    '<div class="col-12 text-center"><p class="text-muted">Aucun cours disponible</p></div>';
+
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                const errorMessage = `
+                    <div class="col-12">
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            Erreur de chargement des cours: ${error.message}
+                        </div>
+                    </div>
+                `;
+                inProgressGrid.innerHTML = errorMessage;
+                completedGrid.innerHTML = errorMessage;
+                savedGrid.innerHTML = errorMessage;
+                allGrid.innerHTML = errorMessage;
+            }
+        }
+
+        // Function to create course card HTML
+        function createCourseCard(course, isEnrolled) {
+            const student = course.students?.find(s => s.studentId === currentUserId);
+            const progress = student ? student.progress : 0;
+            const status = getStatusBadge(course);
+
+            return `
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="position-relative">
+                            <img src="${course.thumbnail || 'https://placehold.co/600x400/5461FF/FFFFFF?text=' + encodeURIComponent(course.title)}" 
+                                 class="card-img-top" alt="${course.title}">
+                            <span class="badge ${status.color} position-absolute top-0 end-0 m-2">
+                                ${status.text}
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge badge-ai">${course.category}</span>
+                                <small class="text-muted">${course.content?.length || 0} leçons</small>
+                            </div>
+                            <h5 class="card-title fw-bold mb-1">${course.title}</h5>
+                            <p class="text-muted mb-3">${course.instructor?.firstName} ${course.instructor?.lastName}</p>
+                            ${isEnrolled ? `
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="small">Progression (${progress}%)</span>
+                                        <span class="small text-muted">${Math.round((progress/100) * (course.content?.length || 0))}/${course.content?.length || 0} leçons</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" 
+                                             style="width: ${progress}%" 
+                                             aria-valuenow="${progress}" 
+                                             aria-valuemin="0" 
+                                             aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                ${displayCourseContent(course)}
+                            ` : ''}
+                            <div class="d-grid">
+                                ${isEnrolled ? 
+                                    `<a href="#" class="btn btn-primary">Continuer</a>` : 
+                                    `<button onclick="enrollInCourse('${course._id}')" class="btn btn-outline-primary">S'inscrire au cours</button>`
+                                }
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i class="far fa-clock text-muted me-1"></i>
+                                    <small class="text-muted">${course.duration || 0}h au total</small>
+                                </div>
+                                <div>
+                                    <i class="far fa-heart me-2"></i>
+                                    <i class="fas fa-share-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Helper function to get status badge
+        function getStatusBadge(course) {
+            const student = course.students?.find(s => s.studentId === currentUserId);
+            if (!student) {
+                return { text: 'Non commencé', color: 'bg-secondary' };
+            }
+            if (student.progress === 100) {
+                return { text: 'Complété', color: 'bg-success' };
+            }
+            if (student.progress > 0) {
+                return { text: 'En cours', color: 'bg-primary' };
+            }
+            return { text: 'Non commencé', color: 'bg-secondary' };
+        }
+
+        // Function to display course content including PDFs
+        function displayCourseContent(course) {
+            console.log('Course content:', course.content); // Debug log
+            
+            if (!course.content || course.content.length === 0) {
+                console.log('No course content found'); // Debug log
+                return '<p class="text-muted">Aucun matériel disponible pour ce cours.</p>';
+            }
+
+            const pdfContent = course.content
+                .filter(item => {
+                    console.log('Content item:', item); // Debug log
+                    return item.type === 'pdf' || item.fileType === 'pdf' || item.contentType === 'application/pdf';
+                })
+                .map(pdf => `
+                    <div class="card mb-2">
+                        <div class="card-body p-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="fas fa-file-pdf text-danger me-2"></i>
+                                    <span>${pdf.title || pdf.fileName || 'Document PDF'}</span>
+                                </div>
+                                <button class="btn btn-sm btn-primary" onclick="downloadCoursePDF('${course._id}', '${pdf._id || pdf.id}', '${pdf.fileName || pdf.title || 'document.pdf'}')">
+                                    <i class="fas fa-download me-2"></i>Télécharger
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+            if (!pdfContent) {
+                console.log('No PDF content found after filtering'); // Debug log
+                return '<p class="text-muted">Aucun PDF disponible pour ce cours.</p>';
+            }
+
+            return `
+                <div class="course-content mb-3">
+                    <h6 class="mb-2">Matériel du cours</h6>
+                    ${pdfContent}
+                </div>
+            `;
+        }
+
+        // Initialize page
+        window.addEventListener('DOMContentLoaded', async () => {
+            const isAuthenticated = await checkAuth();
+            if (isAuthenticated) {
+                await loadCourses();
+            }
+        });
+    </script>
+</body>
+</html>

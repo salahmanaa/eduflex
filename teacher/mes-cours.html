@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlex - Mes Cours</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/etud-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .course-card {
+            transition: transform 0.2s;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .course-thumbnail {
+            height: 180px;
+            object-fit: cover;
+        }
+        .course-progress {
+            height: 8px;
+            border-radius: 4px;
+        }
+        .badge-enrollment {
+            background: #4a6cf7;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar py-3">
+        <div class="text-center py-3 mb-3">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <span class="text-gradient fs-4">EduFlex</span>
+            </a>
+        </div>
+        <div class="px-3">
+            <div class="position-relative mb-4">
+                <input type="text" class="form-control search-input py-2" placeholder="Rechercher...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Principal</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="prof-dashboard.html">
+                        <i class="fas fa-th-large"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="mes-cours.html">
+                        <i class="fas fa-book"></i> Mes cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planning.html">
+                        <i class="fas fa-calendar-alt"></i> Planning
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mes-etudiants.html">
+                        <i class="fas fa-user-graduate"></i> Mes étudiants
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="devoirs.html">
+                        <i class="fas fa-tasks"></i> Devoirs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prof-quiz.html">
+                        <i class="fas fa-question-circle"></i> Quiz
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="statistiques.html">
+                        <i class="fas fa-chart-bar"></i> Statistiques
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Communauté</p>
+            <ul class="nav flex-column mb-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="forum.html">
+                        <i class="fas fa-users"></i> Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="fas fa-comments"></i> Messages
+                        <span class="badge rounded-pill bg-danger float-end">5</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="conference.html">
+                        <i class="fas fa-video"></i> Conférences
+                    </a>
+                </li>
+            </ul>
+            <p class="text-muted small text-uppercase ms-3 mb-2">Compte</p>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="profileteacher.html">
+                        <i class="fas fa-user-circle"></i> Profil
+                    </a>
+                </li>
+              
+<li class="nav-item">
+  <a class="nav-link" href="#" id="logoutButton">
+    <i class="fas fa-sign-out-alt"></i> Déconnexion
+  </a>
+</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <div class="main-content">
+        <!-- En-tête -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0 fw-bold">Mes Cours</h2>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newCourseModal">
+                    <i class="fas fa-plus me-2"></i>Nouveau cours
+                </button>
+               
+            </div>
+        </div>
+
+        <!-- Filtres -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Rechercher un cours...">
+                            <i class="fas fa-search position-absolute end-0 top-50 translate-middle-y me-3 text-muted"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option value="">Toutes catégories</option>
+                            <option>IA</option>
+                            <option>Développement Web</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option value="">Tous statuts</option>
+                            <option>Actif</option>
+                            <option>Archivé</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grille de Cours -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row g-4" id="courseGrid">
+                    <!-- Loading placeholder -->
+                    <div class="text-center py-4">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Chargement...</span>
+                        </div>
+                        <p class="mt-2 text-muted">Chargement des cours...</p>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <nav class="d-flex justify-content-between align-items-center mt-4">
+                    <p class="text-muted mb-0">Affichage de 1-6 sur 12 cours</p>
+                    <ul class="pagination mb-0">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#"><i class="fas fa-chevron-left small"></i></a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"><i class="fas fa-chevron-right small"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Modal Création de Cours -->
+        <div class="modal fade" id="newCourseModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><i class="fas fa-plus-circle me-2"></i>Nouveau cours</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="courseForm" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label class="form-label">Titre du cours</label>
+                                        <input type="text" name="title" class="form-control" required>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea name="description" class="form-control" rows="3" required></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Catégorie</label>
+                                        <select name="category" class="form-select" required>
+                                            <option value="">Choisir une catégorie</option>
+                                            <option value="Intelligence Artificielle">Intelligence Artificielle</option>
+                                            <option value="Développement Web">Développement Web</option>
+                                            <option value="Data Science">Data Science</option>
+                                            <option value="Cybersécurité">Cybersécurité</option>
+                                            <option value="Mobile">Développement Mobile</option>
+                                            <option value="Base de données">Base de données</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Niveau</label>
+                                        <select name="level" class="form-select" required>
+                                            <option value="">Choisir un niveau</option>
+                                            <option value="Débutant">Débutant</option>
+                                            <option value="Intermédiaire">Intermédiaire</option>
+                                            <option value="Avancé">Avancé</option>
+                                            <option value="Expert">Expert</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Durée estimée (heures)</label>
+                                        <input type="number" name="duration" class="form-control" 
+                                               min="1" max="500" placeholder="ex: 40">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Prix (€)</label>
+                                        <input type="number" name="price" class="form-control" 
+                                               min="0" step="0.01" placeholder="ex: 99.99">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Image de couverture</label>
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div class="flex-grow-1">
+                                        <input type="file" name="thumbnail" accept="image/*" class="form-control" required>
+                                        <div class="form-text">Formats acceptés: JPG, PNG, GIF (max 5MB)</div>
+                                    </div>
+                                    <div id="thumbnailPreview" class="d-none">
+                                        <img src="" alt="Aperçu" style="max-width: 100px; max-height: 100px; object-fit: cover;" class="rounded">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Fichiers du cours (PDF)</label>
+                                <input type="file" name="files" multiple accept="application/pdf" class="form-control">
+                                <div class="form-text">Vous pouvez sélectionner plusieurs fichiers PDF (max 50MB par fichier)</div>
+                                <div id="selectedFiles" class="mt-2"></div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-save me-2"></i>Créer le cours
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+    // Check authentication on page load
+    async function checkAuth() {
+        try {
+            const response = await fetch('/api/auth/session', {
+                credentials: 'include'
+            });
+            
+            if (!response.ok) {
+                window.location.href = '../login.html';
+                return false;
+            }
+            
+            const data = await response.json();
+            if (!data.isLoggedIn || data.user.role !== 'teacher') {
+                window.location.href = '../login.html';
+                return false;
+            }
+            
+            return true;
+        } catch (error) {
+            console.error('Auth check error:', error);
+            window.location.href = '../login.html';
+            return false;
+        }
+    }
+
+    // Logout function
+    async function logout() {
+        try {
+            await fetch('/api/auth/logout', {
+                method: 'POST',
+                credentials: 'include'
+            });
+            window.location.href = '../index.html';
+        } catch (error) {
+            console.error('Logout error:', error);
+            window.location.href = '../index.html';
+        }
+    }
+
+    // Handle thumbnail preview
+    document.querySelector('input[name="thumbnail"]').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('thumbnailPreview');
+                preview.querySelector('img').src = e.target.result;
+                preview.classList.remove('d-none');
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Handle selected PDF files display
+    document.querySelector('input[name="files"]').addEventListener('change', function(e) {
+        const selectedFiles = document.getElementById('selectedFiles');
+        selectedFiles.innerHTML = '';
+        
+        Array.from(this.files).forEach(file => {
+            const fileSize = (file.size / (1024 * 1024)).toFixed(2); // Convert to MB
+            selectedFiles.innerHTML += `
+                <div class="alert alert-info alert-dismissible fade show py-2 mb-2" role="alert">
+                    <small>
+                        <i class="fas fa-file-pdf text-danger me-2"></i>
+                        ${file.name} (${fileSize} MB)
+                    </small>
+                    <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert"></button>
+                </div>
+            `;
+        });
+    });
+
+    document.getElementById('courseForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const form = e.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+
+        try {
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Création...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            
+            const response = await fetch('/api/courses', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Erreur lors de la création du cours');
+            }
+            
+            // Show success message
+            showToast('Cours créé avec succès!', 'success');
+            
+            // Close modal and reset form
+            const modal = bootstrap.Modal.getInstance(document.getElementById('newCourseModal'));
+            modal.hide();
+            form.reset();
+            
+            // Reset previews
+            document.getElementById('thumbnailPreview').classList.add('d-none');
+            document.getElementById('selectedFiles').innerHTML = '';
+            
+            // Reload courses
+            await loadCourses();
+
+        } catch (error) {
+            console.error('Course creation error:', error);
+            showToast(error.message, 'danger');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // Function to show toast notifications
+    function showToast(message, type = 'info') {
+        const toastContainer = document.createElement('div');
+        toastContainer.style.position = 'fixed';
+        toastContainer.style.top = '20px';
+        toastContainer.style.right = '20px';
+        toastContainer.style.zIndex = '1050';
+        
+        toastContainer.innerHTML = `
+            <div class="toast align-items-center text-white bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(toastContainer);
+        const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'), { delay: 5000 });
+        toast.show();
+        
+        toastContainer.addEventListener('hidden.bs.toast', () => {
+            toastContainer.remove();
+        });
+    }
+
+    // Load courses function
+    async function loadCourses() {
+        const courseGrid = document.getElementById('courseGrid');
+        
+        try {
+            const response = await fetch('/api/courses', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error('Erreur de chargement des cours');
+            }
+
+            const courses = await response.json();
+            
+            if (courses.length === 0) {
+                courseGrid.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">Aucun cours créé</h4>
+                        <p class="text-muted">Créez votre premier cours en cliquant sur "Nouveau cours"</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            courseGrid.innerHTML = courses.map(course => `
+                <div class="col-md-4 mb-4">
+                    <div class="card course-card h-100">
+                        <img src="${course.thumbnail || '/assets/images/default-course.jpg'}" 
+                             class="card-img-top course-thumbnail" 
+                             alt="${course.title}" 
+                             onerror="this.src='/assets/images/default-course.jpg'">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <h5 class="card-title mb-0">${course.title}</h5>
+                                <span class="badge badge-enrollment">${course.students?.length || 0} étudiants</span>
+                            </div>
+                            <p class="card-text text-muted small mb-3">${course.description}</p>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="progress course-progress flex-grow-1">
+                                    <div class="progress-bar bg-primary" style="width: ${course.progress || 0}%"></div>
+                                </div>
+                                <small class="text-muted">${course.progress || 0}%</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="btn btn-sm btn-light">
+                                    <i class="fas fa-edit me-2"></i>Modifier
+                                </a>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-light" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-chart-line me-2"></i>Statistiques</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="deleteCourse('${course._id}')"><i class="fas fa-trash me-2"></i>Supprimer</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+        } catch (error) {
+            console.error('Error loading courses:', error);
+            courseGrid.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
+                    <h4 class="text-muted">Erreur de chargement</h4>
+                    <p class="text-muted">Impossible de charger les cours. Veuillez rafraîchir la page.</p>
+                    <button class="btn btn-primary" onclick="loadCourses()">Réessayer</button>
+                </div>
+            `;
+        }
+    }
+
+    // Delete course function
+    async function deleteCourse(courseId) {
+        if (!confirm('Êtes-vous sûr de vouloir supprimer ce cours ?')) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/courses/${courseId}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error('Erreur lors de la suppression');
+            }
+
+            loadCourses(); // Reload courses
+        } catch (error) {
+            console.error('Delete error:', error);
+            alert('Erreur lors de la suppression du cours');
+        }
+    }
+
+    // Initialize page
+    window.addEventListener('DOMContentLoaded', async () => {
+        const isAuthenticated = await checkAuth();
+        if (isAuthenticated) {
+            loadCourses();
+        }
+    });
+    </script>
+    <script src="../assets/js/logout.js"></script>
+</body>
+</html>
